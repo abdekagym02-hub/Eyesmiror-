@@ -70,9 +70,6 @@ font-size:14px;
 color:#ddd;
 }
 
-
-/* BALANCE */
-
 .balance-card{
 background:linear-gradient(145deg,#17130b,#0f1015);
 border:1px solid #4d3b18;
@@ -100,9 +97,6 @@ color:#777;
 font-size:13px;
 margin-top:3px;
 }
-
-
-/* MINING */
 
 .mining-card{
 background:#111218;
@@ -212,9 +206,6 @@ border-radius:20px;
 transition:.3s;
 }
 
-
-/* STATS */
-
 .stats{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -245,17 +236,11 @@ font-size:11px;
 margin-top:3px;
 }
 
-
-/* SECTION */
-
 .section-title{
 font-size:18px;
 margin-bottom:12px;
 margin-top:22px;
 }
-
-
-/* EARN */
 
 .earn-grid{
 display:grid;
@@ -297,9 +282,6 @@ margin-top:9px;
 color:#dcb052;
 font-size:12px;
 }
-
-
-/* TASKS */
 
 .task-list{
 display:flex;
@@ -367,9 +349,6 @@ color:#fff;
 opacity:.6;
 }
 
-
-/* FRIENDS */
-
 .friend-box{
 background:#111218;
 border:1px solid #292a31;
@@ -397,19 +376,12 @@ gap:7px;
 
 .referral input{
 flex:1;
-
 background:#08090d;
-
 border:1px solid #292a31;
-
 border-radius:10px;
-
 color:#aaa;
-
 padding:10px;
-
 font-size:11px;
-
 direction:ltr;
 }
 
@@ -421,9 +393,6 @@ border-radius:10px;
 padding:10px 12px;
 font-weight:bold;
 }
-
-
-/* PACKAGES */
 
 .packages{
 display:flex;
@@ -495,26 +464,17 @@ font-weight:bold;
 cursor:pointer;
 }
 
-
-/* NAV */
-
 .bottom-nav{
 position:fixed;
-
 bottom:0;
 left:0;
 right:0;
-
 height:72px;
-
 background:#101116;
-
 border-top:1px solid #24252d;
-
 display:flex;
 justify-content:space-around;
 align-items:center;
-
 z-index:10;
 }
 
@@ -536,46 +496,28 @@ margin-bottom:3px;
 color:#e0b34f;
 }
 
-
-/* TOAST */
-
 .toast{
 position:fixed;
-
 left:50%;
 bottom:88px;
-
 transform:translateX(-50%);
-
 background:#24252d;
-
 color:white;
-
 padding:12px 18px;
-
 border-radius:12px;
-
 font-size:13px;
-
 display:none;
-
 z-index:50;
-
 white-space:nowrap;
 }
 
-
-/* FAST MODE */
-
-.fast-mode{
+.mining-active{
 box-shadow:
 0 0 45px rgba(224,179,79,.35);
-
-transform:scale(.97);
 }
 
-.fast-mode .eye{
-animation:eyePulse .5s infinite alternate;
+.mining-active .eye{
+animation:eyePulse .8s infinite alternate;
 }
 
 @keyframes eyePulse{
@@ -594,14 +536,9 @@ transform:scale(1.12);
 
 </head>
 
-
 <body>
 
-
 <div class="app">
-
-
-<!-- HEADER -->
 
 <div class="header">
 
@@ -611,8 +548,7 @@ transform:scale(1.12);
 
 <div class="user-box">
 
-<div id="userName"
-class="user-name">
+<div id="userName" class="user-name">
 مستخدم
 </div>
 
@@ -625,16 +561,13 @@ class="user-name">
 </div>
 
 
-<!-- BALANCE -->
-
 <div class="balance-card">
 
 <div class="balance-label">
 رصيدك الحالي
 </div>
 
-<div id="balance"
-class="balance">
+<div id="balance" class="balance">
 0.0000000000
 </div>
 
@@ -645,8 +578,6 @@ EM Points
 </div>
 
 
-<!-- MINING -->
-
 <div class="mining-card">
 
 <div class="mining-title">
@@ -654,12 +585,10 @@ EM Points
 </div>
 
 <div class="mining-subtitle">
-ضغطة = 0.0000001 • الضغط المطول = عداد سريع
+ضغطة = 0.0000001 • الضغط المطول = تشغيل / إيقاف التعدين
 </div>
 
-
-<div id="miningCircle"
-class="mining-circle">
+<div id="miningCircle" class="mining-circle">
 
 <div class="circle-inner">
 
@@ -667,13 +596,11 @@ class="mining-circle">
 👁️
 </div>
 
-<div id="tapText"
-class="tap-text">
+<div id="tapText" class="tap-text">
 اضغط هنا
 </div>
 
-<div id="autoText"
-class="auto-text">
+<div id="autoText" class="auto-text">
 التعدين متوقف
 </div>
 
@@ -681,34 +608,25 @@ class="auto-text">
 
 </div>
 
-
-<div id="rate"
-class="rate">
-+0.0000012000 EM / دقيقة
+<div id="rate" class="rate">
++0.0000012000 EM / ثانية
 </div>
 
-
-<div id="energy"
-class="energy">
+<div id="energy" class="energy">
 ⚡ الطاقة: 100
 </div>
 
-
 <div class="energy-bar">
 
-<div id="energyFill"
-class="energy-fill">
+<div id="energyFill" class="energy-fill">
 </div>
 
 </div>
 
 </div>
 
-
-<!-- STATS -->
 
 <div class="stats">
-
 
 <div class="stat">
 
@@ -716,8 +634,7 @@ class="energy-fill">
 👥
 </div>
 
-<div id="friends"
-class="stat-number">
+<div id="friends" class="stat-number">
 0
 </div>
 
@@ -727,15 +644,13 @@ class="stat-number">
 
 </div>
 
-
 <div class="stat">
 
 <div class="stat-icon">
 ⭐
 </div>
 
-<div id="level"
-class="stat-number">
+<div id="level" class="stat-number">
 1
 </div>
 
@@ -745,15 +660,13 @@ class="stat-number">
 
 </div>
 
-
 <div class="stat">
 
 <div class="stat-icon">
 ⚡
 </div>
 
-<div id="energyStat"
-class="stat-number">
+<div id="energyStat" class="stat-number">
 100
 </div>
 
@@ -763,19 +676,14 @@ class="stat-number">
 
 </div>
 
-
 </div>
 
-
-<!-- EARN -->
 
 <div class="section-title">
 💰 طرق كسب النقاط
 </div>
 
-
 <div class="earn-grid">
-
 
 <div class="earn-card"
 onclick="showSection('friendsSection')">
@@ -798,7 +706,6 @@ onclick="showSection('friendsSection')">
 
 </div>
 
-
 <div class="earn-card"
 onclick="showSection('videosSection')">
 
@@ -819,7 +726,6 @@ onclick="showSection('videosSection')">
 </div>
 
 </div>
-
 
 <div class="earn-card"
 onclick="showSection('adsSection')">
@@ -842,7 +748,6 @@ onclick="showSection('adsSection')">
 
 </div>
 
-
 <div class="earn-card"
 onclick="dailyTask()">
 
@@ -864,11 +769,8 @@ onclick="dailyTask()">
 
 </div>
 
-
 </div>
 
-
-<!-- FRIENDS -->
 
 <div id="friendsSection">
 
@@ -906,8 +808,6 @@ onclick="copyReferral()">
 </div>
 
 
-<!-- VIDEOS -->
-
 <div id="videosSection">
 
 <div class="section-title">
@@ -915,7 +815,6 @@ onclick="copyReferral()">
 </div>
 
 <div class="task-list">
-
 
 <div class="task">
 
@@ -935,15 +834,13 @@ YouTube Video 1
 
 </div>
 
-<button
-id="video1"
+<button id="video1"
 class="task-btn"
 onclick="goTask('video1','https://www.youtube.com/')">
 GO
 </button>
 
 </div>
-
 
 <div class="task">
 
@@ -963,15 +860,13 @@ YouTube Video 2
 
 </div>
 
-<button
-id="video2"
+<button id="video2"
 class="task-btn"
 onclick="goTask('video2','https://www.youtube.com/')">
 GO
 </button>
 
 </div>
-
 
 <div class="task">
 
@@ -991,15 +886,13 @@ YouTube Video 3
 
 </div>
 
-<button
-id="video3"
+<button id="video3"
 class="task-btn"
 onclick="goTask('video3','https://www.youtube.com/')">
 GO
 </button>
 
 </div>
-
 
 <div class="task">
 
@@ -1019,15 +912,13 @@ YouTube Video 4
 
 </div>
 
-<button
-id="video4"
+<button id="video4"
 class="task-btn"
 onclick="goTask('video4','https://www.youtube.com/')">
 GO
 </button>
 
 </div>
-
 
 <div class="task">
 
@@ -1047,8 +938,7 @@ YouTube Video 5
 
 </div>
 
-<button
-id="video5"
+<button id="video5"
 class="task-btn"
 onclick="goTask('video5','https://www.youtube.com/')">
 GO
@@ -1056,13 +946,10 @@ GO
 
 </div>
 
-
 </div>
 
 </div>
 
-
-<!-- ADS -->
 
 <div id="adsSection">
 
@@ -1071,7 +958,6 @@ GO
 </div>
 
 <div class="task-list">
-
 
 <div class="task">
 
@@ -1091,15 +977,13 @@ Website 1
 
 </div>
 
-<button
-id="ad1"
+<button id="ad1"
 class="task-btn"
 onclick="goTask('ad1','https://example.com')">
 GO
 </button>
 
 </div>
-
 
 <div class="task">
 
@@ -1119,15 +1003,13 @@ Website 2
 
 </div>
 
-<button
-id="ad2"
+<button id="ad2"
 class="task-btn"
 onclick="goTask('ad2','https://example.com')">
 GO
 </button>
 
 </div>
-
 
 <div class="task">
 
@@ -1147,15 +1029,13 @@ Website 3
 
 </div>
 
-<button
-id="ad3"
+<button id="ad3"
 class="task-btn"
 onclick="goTask('ad3','https://example.com')">
 GO
 </button>
 
 </div>
-
 
 <div class="task">
 
@@ -1175,15 +1055,13 @@ Website 4
 
 </div>
 
-<button
-id="ad4"
+<button id="ad4"
 class="task-btn"
 onclick="goTask('ad4','https://example.com')">
 GO
 </button>
 
 </div>
-
 
 <div class="task">
 
@@ -1203,8 +1081,7 @@ Website 5
 
 </div>
 
-<button
-id="ad5"
+<button id="ad5"
 class="task-btn"
 onclick="goTask('ad5','https://example.com')">
 GO
@@ -1212,20 +1089,16 @@ GO
 
 </div>
 
-
 </div>
 
 </div>
 
-
-<!-- PACKAGES -->
 
 <div class="section-title">
 ⚡ باقات التعدين
 </div>
 
 <div class="packages">
-
 
 <div class="package">
 
@@ -1484,16 +1357,12 @@ onclick="buyPackage(20,0.330,10000)">
 
 </div>
 
-
 </div>
 
 </div>
 
-
-<!-- NAV -->
 
 <div class="bottom-nav">
-
 
 <button
 class="nav active"
@@ -1507,7 +1376,6 @@ onclick="window.scrollTo({top:0,behavior:'smooth'})">
 
 </button>
 
-
 <button
 class="nav"
 onclick="window.scrollTo({top:300,behavior:'smooth'})">
@@ -1519,7 +1387,6 @@ onclick="window.scrollTo({top:300,behavior:'smooth'})">
 التعدين
 
 </button>
-
 
 <button
 class="nav"
@@ -1533,7 +1400,6 @@ onclick="showSection('videosSection')">
 
 </button>
 
-
 <button
 class="nav"
 onclick="showSection('friendsSection')">
@@ -1545,7 +1411,6 @@ onclick="showSection('friendsSection')">
 الأصدقاء
 
 </button>
-
 
 <button
 class="nav"
@@ -1559,59 +1424,34 @@ onclick="document.querySelector('.packages').scrollIntoView({behavior:'smooth'})
 
 </button>
 
-
 </div>
 
 
-<div id="toast"
-class="toast">
-</div>
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-
-/* =========================
-   TELEGRAM
-========================= */
-
-const tg =
-window.Telegram.WebApp;
+const tg = window.Telegram.WebApp;
 
 tg.ready();
-
 tg.expand();
 
 
-/* =========================
-   VARIABLES
-========================= */
-
 let balance = 0;
-
 let friends = 0;
-
 let level = 1;
-
 let energy = 100;
-
 let maxEnergy = 100;
-
 let miningRate = 0.0000012;
-
 let mining = false;
 
 let longPressTimer = null;
-
-let fastTimer = null;
-
-let isHolding = false;
-
-let touchStarted = false;
+let longPressTriggered = false;
 
 
 /* =========================
-   USER
+   TELEGRAM USER
 ========================= */
 
 function loadTelegramUser(){
@@ -1633,16 +1473,13 @@ function loadTelegramUser(){
             "userName"
         ).textContent = name;
 
-
         const username =
             user.username ||
             user.id;
 
-
         const link =
             "https://t.me/Eyesmirorbot?start=ref_" +
             username;
-
 
         document.getElementById(
             "referralLink"
@@ -1656,6 +1493,13 @@ function loadTelegramUser(){
 ========================= */
 
 async function loadUser(){
+
+    if(!tg.initData){
+
+        showToast("افتح التطبيق من Telegram");
+
+        return;
+    }
 
     try{
 
@@ -1679,55 +1523,36 @@ async function loadUser(){
                 }
             );
 
-
         const data =
             await response.json();
-
 
         if(!data.success){
 
             showToast(
+                data.message ||
                 "تعذر تحميل الحساب"
             );
 
             return;
         }
 
-
         const user =
             data.user;
 
-
         balance =
-            Number(
-                user.balance || 0
-            );
-
+            Number(user.balance || 0);
 
         friends =
-            Number(
-                user.friends || 0
-            );
-
+            Number(user.friends || 0);
 
         level =
-            Number(
-                user.level || 1
-            );
-
+            Number(user.level || 1);
 
         energy =
-            Number(
-                user.energy || 0
-            );
-
+            Number(user.energy || 0);
 
         maxEnergy =
-            Math.max(
-                100,
-                energy
-            );
-
+            Math.max(100, energy);
 
         miningRate =
             Number(
@@ -1735,13 +1560,10 @@ async function loadUser(){
                 0.0000012
             );
 
-
         mining =
             !!user.mining;
 
-
         updateUI();
-
 
     }catch(error){
 
@@ -1765,24 +1587,15 @@ function updateUI(){
     ).textContent =
         balance.toFixed(10);
 
-
     document.getElementById(
         "friends"
     ).textContent =
         friends;
 
-
-    level =
-        Math.floor(
-            balance / 100
-        ) + 1;
-
-
     document.getElementById(
         "level"
     ).textContent =
         level;
-
 
     document.getElementById(
         "energy"
@@ -1790,20 +1603,17 @@ function updateUI(){
         "⚡ الطاقة: " +
         Math.floor(energy);
 
-
     document.getElementById(
         "energyStat"
     ).textContent =
         Math.floor(energy);
-
 
     document.getElementById(
         "rate"
     ).textContent =
         "+" +
         miningRate.toFixed(10) +
-        " EM / دقيقة";
-
+        " EM / ثانية";
 
     const percent =
         maxEnergy > 0
@@ -1812,47 +1622,49 @@ function updateUI(){
         :
         0;
 
-
     document.getElementById(
         "energyFill"
     ).style.width =
-        Math.max(
-            0,
-            percent
-        ) + "%";
+        Math.max(0, percent) + "%";
+
+
+    const circle =
+        document.getElementById(
+            "miningCircle"
+        );
 
 
     if(mining){
+
+        circle.classList.add(
+            "mining-active"
+        );
 
         document.getElementById(
             "autoText"
         ).textContent =
             "🟢 التعدين التلقائي يعمل";
 
-
-        if(!isHolding){
-
-            document.getElementById(
-                "tapText"
-            ).textContent =
-                "اضغط مطولًا للإيقاف";
-        }
+        document.getElementById(
+            "tapText"
+        ).textContent =
+            "اضغط مطولًا للإيقاف";
 
     }else{
+
+        circle.classList.remove(
+            "mining-active"
+        );
 
         document.getElementById(
             "autoText"
         ).textContent =
             "🔴 التعدين متوقف";
 
-
-        if(!isHolding){
-
-            document.getElementById(
-                "tapText"
-            ).textContent =
-                "اضغط مطولًا للتشغيل";
-        }
+        document.getElementById(
+            "tapText"
+        ).textContent =
+            "اضغط مطولًا للتشغيل";
     }
 }
 
@@ -1863,10 +1675,14 @@ function updateUI(){
 
 async function normalClick(){
 
-    if(isHolding){
+    if(mining){
+
+        showToast(
+            "⛏️ التعدين يعمل حاليًا"
+        );
+
         return;
     }
-
 
     try{
 
@@ -1890,10 +1706,8 @@ async function normalClick(){
                 }
             );
 
-
         const data =
             await response.json();
-
 
         if(!data.success){
 
@@ -1905,27 +1719,22 @@ async function normalClick(){
             return;
         }
 
-
         balance =
             Number(
                 data.user.balance || 0
             );
-
 
         energy =
             Number(
                 data.user.energy || 0
             );
 
-
         updateUI();
-
 
         showToast(
             "+0.0000001 EM"
         );
 
-
     }catch(error){
 
         console.log(error);
@@ -1938,183 +1747,7 @@ async function normalClick(){
 
 
 /* =========================
-   FAST COUNTER
-========================= */
-
-function startFastCounter(){
-
-    if(isHolding){
-        return;
-    }
-
-
-    isHolding = true;
-
-
-    const circle =
-        document.getElementById(
-            "miningCircle"
-        );
-
-
-    circle.classList.add(
-        "fast-mode"
-    );
-
-
-    document.getElementById(
-        "tapText"
-    ).textContent =
-        "⚡ العداد السريع يعمل";
-
-
-    /*
-       إرسال دفعة كل 250ms
-       حتى لا نرسل عشرات الطلبات
-       في الثانية إلى السيرفر.
-    */
-
-    fastTimer =
-        setInterval(
-            sendFastReward,
-            250
-        );
-}
-
-
-/* =========================
-   FAST REWARD
-========================= */
-
-async function sendFastReward(){
-
-    if(!isHolding){
-        return;
-    }
-
-
-    if(energy <= 0){
-
-        stopFastCounter();
-
-        showToast(
-            "⚡ انتهت الطاقة"
-        );
-
-        return;
-    }
-
-
-    try{
-
-        /*
-           0.25 ثانية من الضغط
-        */
-
-        const response =
-            await fetch(
-                "/api/mining/fast",
-                {
-                    method:"POST",
-
-                    headers:{
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body:JSON.stringify({
-
-                        initData:
-                            tg.initData,
-
-                        seconds:0.25
-
-                    })
-                }
-            );
-
-
-        const data =
-            await response.json();
-
-
-        if(!data.success){
-
-            stopFastCounter();
-
-            showToast(
-                data.message ||
-                "انتهت الطاقة"
-            );
-
-            return;
-        }
-
-
-        balance =
-            Number(
-                data.user.balance || 0
-            );
-
-
-        energy =
-            Number(
-                data.user.energy || 0
-            );
-
-
-        updateUI();
-
-
-    }catch(error){
-
-        console.log(error);
-
-        stopFastCounter();
-
-        showToast(
-            "خطأ في الاتصال"
-        );
-    }
-}
-
-
-/* =========================
-   STOP FAST
-========================= */
-
-function stopFastCounter(){
-
-    isHolding = false;
-
-
-    if(fastTimer){
-
-        clearInterval(
-            fastTimer
-        );
-
-        fastTimer = null;
-    }
-
-
-    const circle =
-        document.getElementById(
-            "miningCircle"
-        );
-
-
-    circle.classList.remove(
-        "fast-mode"
-    );
-
-
-    updateUI();
-}
-
-
-/* =========================
-   LONG PRESS TOUCH
+   LONG PRESS
 ========================= */
 
 const circle =
@@ -2124,163 +1757,84 @@ const circle =
 
 
 circle.addEventListener(
-    "touchstart",
+    "pointerdown",
     function(e){
 
         e.preventDefault();
 
-        touchStarted = true;
-
+        longPressTriggered = false;
 
         clearTimeout(
             longPressTimer
         );
 
-
         longPressTimer =
             setTimeout(
-                function(){
+                async function(){
 
-                    startFastCounter();
+                    longPressTriggered = true;
+
+                    await toggleMining();
 
                 },
                 700
             );
 
-    },
-    {
-        passive:false
     }
 );
 
 
 circle.addEventListener(
-    "touchend",
+    "pointerup",
     function(e){
 
         e.preventDefault();
-
 
         clearTimeout(
             longPressTimer
         );
 
-
-        if(isHolding){
-
-            stopFastCounter();
-
-        }else{
+        if(!longPressTriggered){
 
             normalClick();
+
         }
 
+        longPressTriggered = false;
 
-        touchStarted = false;
-
-    },
-    {
-        passive:false
     }
 );
 
 
 circle.addEventListener(
-    "touchcancel",
+    "pointercancel",
     function(){
 
         clearTimeout(
             longPressTimer
         );
 
+        longPressTriggered = false;
 
-        if(isHolding){
-
-            stopFastCounter();
-        }
+    }
+);
 
 
-        touchStarted = false;
+circle.addEventListener(
+    "pointerleave",
+    function(){
+
+        clearTimeout(
+            longPressTimer
+        );
 
     }
 );
 
 
 /* =========================
-   MOUSE
+   START MINING
 ========================= */
-
-circle.addEventListener(
-    "mousedown",
-    function(){
-
-        longPressTimer =
-            setTimeout(
-                function(){
-
-                    startFastCounter();
-
-                },
-                700
-            );
-    }
-);
-
-
-circle.addEventListener(
-    "mouseup",
-    function(){
-
-        clearTimeout(
-            longPressTimer
-        );
-
-
-        if(isHolding){
-
-            stopFastCounter();
-
-        }else{
-
-            normalClick();
-        }
-    }
-);
-
-
-circle.addEventListener(
-    "mouseleave",
-    function(){
-
-        clearTimeout(
-            longPressTimer
-        );
-
-
-        if(isHolding){
-
-            stopFastCounter();
-        }
-    }
-);
-
-
-/* =========================
-   AUTO MINING
-========================= */
-
-async function toggleMining(){
-
-    if(mining){
-
-        await stopMining();
-
-    }else{
-
-        await startMining();
-    }
-}
-
 
 async function startMining(){
 
@@ -2306,10 +1860,8 @@ async function startMining(){
                 }
             );
 
-
         const data =
             await response.json();
-
 
         if(!data.success){
 
@@ -2321,31 +1873,28 @@ async function startMining(){
             return;
         }
 
-
         mining = true;
 
+        if(data.user){
 
-        balance =
-            Number(
-                data.user.balance ||
-                balance
-            );
+            balance =
+                Number(
+                    data.user.balance ||
+                    balance
+                );
 
-
-        energy =
-            Number(
-                data.user.energy ||
-                energy
-            );
-
+            energy =
+                Number(
+                    data.user.energy ||
+                    energy
+                );
+        }
 
         updateUI();
-
 
         showToast(
             "⛏️ تم تشغيل التعدين"
         );
-
 
     }catch(error){
 
@@ -2357,6 +1906,10 @@ async function startMining(){
     }
 }
 
+
+/* =========================
+   STOP MINING
+========================= */
 
 async function stopMining(){
 
@@ -2382,36 +1935,41 @@ async function stopMining(){
                 }
             );
 
-
         const data =
             await response.json();
 
+        if(!data.success){
 
-        if(data.success){
+            showToast(
+                data.message ||
+                "تعذر إيقاف التعدين"
+            );
+
+            return;
+        }
+
+        mining = false;
+
+        if(data.user){
 
             balance =
                 Number(
-                    data.user.balance || 0
+                    data.user.balance ||
+                    balance
                 );
-
 
             energy =
                 Number(
-                    data.user.energy || 0
+                    data.user.energy ||
+                    energy
                 );
-
-
-            mining = false;
-
-
-            updateUI();
-
-
-            showToast(
-                "⛏️ تم إيقاف التعدين"
-            );
         }
 
+        updateUI();
+
+        showToast(
+            "⛏️ تم إيقاف التعدين"
+        );
 
     }catch(error){
 
@@ -2425,15 +1983,32 @@ async function stopMining(){
 
 
 /* =========================
+   TOGGLE MINING
+========================= */
+
+async function toggleMining(){
+
+    if(mining){
+
+        await stopMining();
+
+    }else{
+
+        await startMining();
+    }
+}
+
+
+/* =========================
    MINING STATUS
 ========================= */
 
 async function updateMiningStatus(){
 
     if(!tg.initData){
+
         return;
     }
-
 
     try{
 
@@ -2448,31 +2023,26 @@ async function updateMiningStatus(){
                 }
             );
 
-
         const data =
             await response.json();
 
-
         if(!data.success){
+
             return;
         }
-
 
         balance =
             Number(
                 data.balance || 0
             );
 
-
         energy =
             Number(
                 data.energy || 0
             );
 
-
         mining =
             !!data.mining;
-
 
         miningRate =
             Number(
@@ -2480,9 +2050,7 @@ async function updateMiningStatus(){
                 miningRate
             );
 
-
         updateUI();
-
 
     }catch(error){
 
@@ -2491,7 +2059,12 @@ async function updateMiningStatus(){
 }
 
 
-/* كل 5 ثوان */
+/*
+   تحديث الحالة كل 5 ثوانٍ.
+   هذا فقط لتحديث الشاشة.
+   التعدين الحقيقي يحسبه السيرفر
+   حتى عند إغلاق التطبيق.
+*/
 
 setInterval(
     updateMiningStatus,
@@ -2510,15 +2083,11 @@ function copyReferral(){
             "referralLink"
         );
 
-
-    if(
-        navigator.clipboard
-    ){
+    if(navigator.clipboard){
 
         navigator.clipboard.writeText(
             input.value
         );
-
 
         showToast(
             "👥 تم نسخ رابط الدعوة"
@@ -2543,41 +2112,32 @@ function copyReferral(){
    TASKS
 ========================= */
 
-function goTask(
-    id,
-    url
-){
+function goTask(id,url){
 
     const button =
         document.getElementById(id);
 
-
     if(!button){
         return;
     }
-
 
     window.open(
         url,
         "_blank"
     );
 
-
     button.textContent =
         "CLAIM";
-
 
     button.classList.add(
         "claim"
     );
-
 
     button.onclick =
         function(){
 
             claimTask(id);
         };
-
 
     showToast(
         "🎯 عند العودة اضغط CLAIM"
@@ -2590,7 +2150,6 @@ function claimTask(id){
     const button =
         document.getElementById(id);
 
-
     if(
         !button ||
         !button.classList.contains(
@@ -2601,13 +2160,9 @@ function claimTask(id){
         return;
     }
 
-
     let reward = 0;
 
-
-    if(
-        id.startsWith("video")
-    ){
+    if(id.startsWith("video")){
 
         reward = 0.050;
 
@@ -2616,24 +2171,18 @@ function claimTask(id){
         reward = 0.030;
     }
 
-
     balance += reward;
-
 
     button.textContent =
         "تم ✓";
 
-
     button.disabled = true;
-
 
     button.classList.remove(
         "claim"
     );
 
-
     updateUI();
-
 
     showToast(
         "+" +
@@ -2680,7 +2229,6 @@ function showSection(id){
     const element =
         document.getElementById(id);
 
-
     if(element){
 
         element.scrollIntoView({
@@ -2704,14 +2252,11 @@ function showToast(message){
             "toast"
         );
 
-
     toast.textContent =
         message;
 
-
     toast.style.display =
         "block";
-
 
     setTimeout(
         function(){
