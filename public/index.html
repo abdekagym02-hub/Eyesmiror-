@@ -3,7 +3,9 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
@@ -68,6 +70,7 @@ font-size:14px;
 color:#ddd;
 }
 
+
 /* BALANCE */
 
 .balance-card{
@@ -85,10 +88,11 @@ font-size:13px;
 }
 
 .balance{
-font-size:36px;
+font-size:34px;
 font-weight:bold;
 color:#e2b44e;
 margin-top:8px;
+word-break:break-all;
 }
 
 .currency{
@@ -96,6 +100,7 @@ color:#777;
 font-size:13px;
 margin-top:3px;
 }
+
 
 /* MINING */
 
@@ -124,18 +129,27 @@ width:210px;
 height:210px;
 margin:auto;
 border-radius:50%;
+
 background:conic-gradient(
 #e0b34f 0deg,
 #e0b34f 45deg,
 #28231a 45deg,
 #28231a 360deg
 );
+
 padding:8px;
+
 cursor:pointer;
-box-shadow:0 0 30px rgba(224,179,79,.15);
+
+box-shadow:
+0 0 30px rgba(224,179,79,.15);
+
 transition:.15s;
+
 user-select:none;
 -webkit-user-select:none;
+
+touch-action:none;
 }
 
 .mining-circle:active{
@@ -147,6 +161,7 @@ width:100%;
 height:100%;
 border-radius:50%;
 background:#0b0c11;
+
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -172,7 +187,7 @@ margin-top:6px;
 .rate{
 margin-top:15px;
 color:#d5aa4b;
-font-size:14px;
+font-size:13px;
 }
 
 .energy{
@@ -196,6 +211,7 @@ background:#d6a84f;
 border-radius:20px;
 transition:.3s;
 }
+
 
 /* STATS */
 
@@ -229,6 +245,7 @@ font-size:11px;
 margin-top:3px;
 }
 
+
 /* SECTION */
 
 .section-title{
@@ -236,6 +253,7 @@ font-size:18px;
 margin-bottom:12px;
 margin-top:22px;
 }
+
 
 /* EARN */
 
@@ -251,6 +269,10 @@ border:1px solid #20212a;
 border-radius:17px;
 padding:17px;
 cursor:pointer;
+}
+
+.earn-card:active{
+transform:scale(.98);
 }
 
 .earn-icon{
@@ -276,6 +298,7 @@ color:#dcb052;
 font-size:12px;
 }
 
+
 /* TASKS */
 
 .task-list{
@@ -289,6 +312,7 @@ background:#111218;
 border:1px solid #24252d;
 border-radius:16px;
 padding:14px;
+
 display:flex;
 align-items:center;
 gap:12px;
@@ -299,10 +323,13 @@ width:45px;
 height:45px;
 border-radius:13px;
 background:#1b1c23;
+
 display:flex;
 align-items:center;
 justify-content:center;
+
 font-size:23px;
+
 flex-shrink:0;
 }
 
@@ -336,6 +363,11 @@ background:#39b86f;
 color:#fff;
 }
 
+.task-btn:disabled{
+opacity:.6;
+}
+
+
 /* FRIENDS */
 
 .friend-box{
@@ -365,12 +397,19 @@ gap:7px;
 
 .referral input{
 flex:1;
+
 background:#08090d;
+
 border:1px solid #292a31;
+
 border-radius:10px;
+
 color:#aaa;
+
 padding:10px;
+
 font-size:11px;
+
 direction:ltr;
 }
 
@@ -382,6 +421,7 @@ border-radius:10px;
 padding:10px 12px;
 font-weight:bold;
 }
+
 
 /* PACKAGES */
 
@@ -396,6 +436,7 @@ background:#111218;
 border:1px solid #292a31;
 border-radius:18px;
 padding:17px;
+
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -403,7 +444,8 @@ align-items:center;
 
 .package.popular{
 border-color:#d6a84f;
-box-shadow:0 0 18px rgba(214,168,79,.08);
+box-shadow:
+0 0 18px rgba(214,168,79,.08);
 }
 
 .package-left{
@@ -453,19 +495,26 @@ font-weight:bold;
 cursor:pointer;
 }
 
+
 /* NAV */
 
 .bottom-nav{
 position:fixed;
+
 bottom:0;
 left:0;
 right:0;
+
 height:72px;
+
 background:#101116;
+
 border-top:1px solid #24252d;
+
 display:flex;
 justify-content:space-around;
 align-items:center;
+
 z-index:10;
 }
 
@@ -487,29 +536,70 @@ margin-bottom:3px;
 color:#e0b34f;
 }
 
+
 /* TOAST */
 
 .toast{
 position:fixed;
+
 left:50%;
 bottom:88px;
+
 transform:translateX(-50%);
+
 background:#24252d;
+
 color:white;
+
 padding:12px 18px;
+
 border-radius:12px;
+
 font-size:13px;
+
 display:none;
+
 z-index:50;
+
 white-space:nowrap;
 }
 
+
+/* FAST MODE */
+
+.fast-mode{
+box-shadow:
+0 0 45px rgba(224,179,79,.35);
+
+transform:scale(.97);
+}
+
+.fast-mode .eye{
+animation:eyePulse .5s infinite alternate;
+}
+
+@keyframes eyePulse{
+
+from{
+transform:scale(1);
+}
+
+to{
+transform:scale(1.12);
+}
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="app">
+
 
 <!-- HEADER -->
 
@@ -521,7 +611,8 @@ white-space:nowrap;
 
 <div class="user-box">
 
-<div id="userName" class="user-name">
+<div id="userName"
+class="user-name">
 مستخدم
 </div>
 
@@ -542,8 +633,9 @@ white-space:nowrap;
 رصيدك الحالي
 </div>
 
-<div id="balance" class="balance">
-0.000
+<div id="balance"
+class="balance">
+0.0000000000
 </div>
 
 <div class="currency">
@@ -562,11 +654,11 @@ EM Points
 </div>
 
 <div class="mining-subtitle">
-اضغط مطولًا على العين لتفعيل التعدين التلقائي
+ضغطة = 0.0000001 • الضغط المطول = عداد سريع
 </div>
 
-<div
-id="miningCircle"
+
+<div id="miningCircle"
 class="mining-circle">
 
 <div class="circle-inner">
@@ -575,11 +667,13 @@ class="mining-circle">
 👁️
 </div>
 
-<div id="tapText" class="tap-text">
+<div id="tapText"
+class="tap-text">
 اضغط هنا
 </div>
 
-<div id="autoText" class="auto-text">
+<div id="autoText"
+class="auto-text">
 التعدين متوقف
 </div>
 
@@ -587,16 +681,25 @@ class="mining-circle">
 
 </div>
 
-<div id="rate" class="rate">
-+0.001 EM / دقيقة
+
+<div id="rate"
+class="rate">
++0.0000012000 EM / دقيقة
 </div>
 
-<div id="energy" class="energy">
+
+<div id="energy"
+class="energy">
 ⚡ الطاقة: 100
 </div>
 
+
 <div class="energy-bar">
-<div id="energyFill" class="energy-fill"></div>
+
+<div id="energyFill"
+class="energy-fill">
+</div>
+
 </div>
 
 </div>
@@ -606,13 +709,15 @@ class="mining-circle">
 
 <div class="stats">
 
+
 <div class="stat">
 
 <div class="stat-icon">
 👥
 </div>
 
-<div id="friends">
+<div id="friends"
+class="stat-number">
 0
 </div>
 
@@ -622,13 +727,15 @@ class="mining-circle">
 
 </div>
 
+
 <div class="stat">
 
 <div class="stat-icon">
 ⭐
 </div>
 
-<div id="level">
+<div id="level"
+class="stat-number">
 1
 </div>
 
@@ -638,13 +745,15 @@ class="mining-circle">
 
 </div>
 
+
 <div class="stat">
 
 <div class="stat-icon">
 ⚡
 </div>
 
-<div id="energyStat">
+<div id="energyStat"
+class="stat-number">
 100
 </div>
 
@@ -653,6 +762,7 @@ class="mining-circle">
 </div>
 
 </div>
+
 
 </div>
 
@@ -663,7 +773,9 @@ class="mining-circle">
 💰 طرق كسب النقاط
 </div>
 
+
 <div class="earn-grid">
+
 
 <div class="earn-card"
 onclick="showSection('friendsSection')">
@@ -752,6 +864,7 @@ onclick="dailyTask()">
 
 </div>
 
+
 </div>
 
 
@@ -802,6 +915,7 @@ onclick="copyReferral()">
 </div>
 
 <div class="task-list">
+
 
 <div class="task">
 
@@ -942,6 +1056,7 @@ GO
 
 </div>
 
+
 </div>
 
 </div>
@@ -956,6 +1071,7 @@ GO
 </div>
 
 <div class="task-list">
+
 
 <div class="task">
 
@@ -1095,6 +1211,7 @@ GO
 </button>
 
 </div>
+
 
 </div>
 
@@ -1367,6 +1484,7 @@ onclick="buyPackage(20,0.330,10000)">
 
 </div>
 
+
 </div>
 
 </div>
@@ -1376,184 +1494,263 @@ onclick="buyPackage(20,0.330,10000)">
 
 <div class="bottom-nav">
 
-<button class="nav active"
+
+<button
+class="nav active"
 onclick="window.scrollTo({top:0,behavior:'smooth'})">
 
-<span class="nav-icon">🏠</span>
+<span class="nav-icon">
+🏠
+</span>
+
 الرئيسية
 
 </button>
 
-<button class="nav"
+
+<button
+class="nav"
 onclick="window.scrollTo({top:300,behavior:'smooth'})">
 
-<span class="nav-icon">⛏️</span>
+<span class="nav-icon">
+⛏️
+</span>
+
 التعدين
 
 </button>
 
-<button class="nav"
+
+<button
+class="nav"
 onclick="showSection('videosSection')">
 
-<span class="nav-icon">🎬</span>
+<span class="nav-icon">
+🎬
+</span>
+
 الفيديوهات
 
 </button>
 
-<button class="nav"
+
+<button
+class="nav"
 onclick="showSection('friendsSection')">
 
-<span class="nav-icon">👥</span>
+<span class="nav-icon">
+👥
+</span>
+
 الأصدقاء
 
 </button>
 
-<button class="nav"
+
+<button
+class="nav"
 onclick="document.querySelector('.packages').scrollIntoView({behavior:'smooth'})">
 
-<span class="nav-icon">💳</span>
+<span class="nav-icon">
+💳
+</span>
+
 الباقات
 
 </button>
 
+
 </div>
 
 
-<div id="toast" class="toast"></div>
+<div id="toast"
+class="toast">
+</div>
 
 
 <script>
+
+
+/* =========================
+   TELEGRAM
+========================= */
 
 const tg =
 window.Telegram.WebApp;
 
 tg.ready();
+
 tg.expand();
 
 
+/* =========================
+   VARIABLES
+========================= */
+
 let balance = 0;
+
 let friends = 0;
+
 let level = 1;
+
 let energy = 100;
+
 let maxEnergy = 100;
-let miningRate = 0.001;
+
+let miningRate = 0.0000012;
+
 let mining = false;
 
 let longPressTimer = null;
-let longPressTriggered = false;
+
+let fastTimer = null;
+
+let isHolding = false;
+
+let touchStarted = false;
 
 
 /* =========================
-   Telegram User
+   USER
 ========================= */
 
 function loadTelegramUser(){
 
-if(
-tg.initDataUnsafe &&
-tg.initDataUnsafe.user
-){
+    if(
+        tg.initDataUnsafe &&
+        tg.initDataUnsafe.user
+    ){
 
-const user =
-tg.initDataUnsafe.user;
+        const user =
+            tg.initDataUnsafe.user;
 
-const name =
-user.first_name ||
-user.username ||
-"مستخدم";
+        const name =
+            user.first_name ||
+            user.username ||
+            "مستخدم";
 
-document.getElementById(
-"userName"
-).textContent = name;
+        document.getElementById(
+            "userName"
+        ).textContent = name;
 
-const username =
-user.username ||
-user.id;
 
-const link =
-"https://t.me/Eyesmirorbot?start=ref_" +
-username;
+        const username =
+            user.username ||
+            user.id;
 
-document.getElementById(
-"referralLink"
-).value = link;
 
-}
+        const link =
+            "https://t.me/Eyesmirorbot?start=ref_" +
+            username;
 
+
+        document.getElementById(
+            "referralLink"
+        ).value = link;
+    }
 }
 
 
 /* =========================
-   API
+   LOAD USER
 ========================= */
 
 async function loadUser(){
 
-try{
+    try{
 
-const response =
-await fetch("/api/user",{
+        const response =
+            await fetch(
+                "/api/user",
+                {
+                    method:"POST",
 
-method:"POST",
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
 
-headers:{
-"Content-Type":
-"application/json"
-},
+                    body:JSON.stringify({
 
-body:JSON.stringify({
+                        initData:
+                            tg.initData
 
-initData:
-tg.initData
+                    })
+                }
+            );
 
-})
 
-});
+        const data =
+            await response.json();
 
-const data =
-await response.json();
 
-if(!data.success){
+        if(!data.success){
 
-showToast("تعذر تحميل الحساب");
-return;
+            showToast(
+                "تعذر تحميل الحساب"
+            );
 
-}
+            return;
+        }
 
-const user =
-data.user;
 
-balance =
-Number(user.balance || 0);
+        const user =
+            data.user;
 
-friends =
-Number(user.friends || 0);
 
-level =
-Number(user.level || 1);
+        balance =
+            Number(
+                user.balance || 0
+            );
 
-energy =
-Number(user.energy || 0);
 
-maxEnergy =
-Math.max(100,energy);
+        friends =
+            Number(
+                user.friends || 0
+            );
 
-miningRate =
-Number(user.mining_rate || 0.001);
 
-mining =
-!!user.mining_start;
+        level =
+            Number(
+                user.level || 1
+            );
 
-updateUI();
 
-}catch(error){
+        energy =
+            Number(
+                user.energy || 0
+            );
 
-console.log(error);
 
-showToast("خطأ في الاتصال بالخادم");
+        maxEnergy =
+            Math.max(
+                100,
+                energy
+            );
 
-}
 
+        miningRate =
+            Number(
+                user.mining_rate ||
+                0.0000012
+            );
+
+
+        mining =
+            !!user.mining;
+
+
+        updateUI();
+
+
+    }catch(error){
+
+        console.log(error);
+
+        showToast(
+            "خطأ في الاتصال بالخادم"
+        );
+    }
 }
 
 
@@ -1563,176 +1760,508 @@ showToast("خطأ في الاتصال بالخادم");
 
 function updateUI(){
 
-document.getElementById(
-"balance"
-).textContent =
-balance.toFixed(3);
-
-document.getElementById(
-"friends"
-).textContent =
-friends;
-
-level =
-Math.floor(balance / 100) + 1;
-
-document.getElementById(
-"level"
-).textContent =
-level;
-
-document.getElementById(
-"energy"
-).textContent =
-"⚡ الطاقة: " +
-Math.floor(energy);
-
-document.getElementById(
-"energyStat"
-).textContent =
-Math.floor(energy);
-
-document.getElementById(
-"rate"
-).textContent =
-"+" +
-miningRate.toFixed(3) +
-" EM / دقيقة";
-
-let percent =
-maxEnergy > 0
-?
-(energy / maxEnergy) * 100
-:
-0;
-
-document.getElementById(
-"energyFill"
-).style.width =
-Math.max(0,percent) + "%";
+    document.getElementById(
+        "balance"
+    ).textContent =
+        balance.toFixed(10);
 
 
-if(mining){
+    document.getElementById(
+        "friends"
+    ).textContent =
+        friends;
 
-document.getElementById(
-"autoText"
-).textContent =
-"🟢 التعدين التلقائي يعمل";
 
-document.getElementById(
-"tapText"
-).textContent =
-"اضغط مطولًا للإيقاف";
+    level =
+        Math.floor(
+            balance / 100
+        ) + 1;
 
-}else{
 
-document.getElementById(
-"autoText"
-).textContent =
-"🔴 التعدين متوقف";
+    document.getElementById(
+        "level"
+    ).textContent =
+        level;
 
-document.getElementById(
-"tapText"
-).textContent =
-"اضغط مطولًا للتشغيل";
 
-}
+    document.getElementById(
+        "energy"
+    ).textContent =
+        "⚡ الطاقة: " +
+        Math.floor(energy);
 
+
+    document.getElementById(
+        "energyStat"
+    ).textContent =
+        Math.floor(energy);
+
+
+    document.getElementById(
+        "rate"
+    ).textContent =
+        "+" +
+        miningRate.toFixed(10) +
+        " EM / دقيقة";
+
+
+    const percent =
+        maxEnergy > 0
+        ?
+        (energy / maxEnergy) * 100
+        :
+        0;
+
+
+    document.getElementById(
+        "energyFill"
+    ).style.width =
+        Math.max(
+            0,
+            percent
+        ) + "%";
+
+
+    if(mining){
+
+        document.getElementById(
+            "autoText"
+        ).textContent =
+            "🟢 التعدين التلقائي يعمل";
+
+
+        if(!isHolding){
+
+            document.getElementById(
+                "tapText"
+            ).textContent =
+                "اضغط مطولًا للإيقاف";
+        }
+
+    }else{
+
+        document.getElementById(
+            "autoText"
+        ).textContent =
+            "🔴 التعدين متوقف";
+
+
+        if(!isHolding){
+
+            document.getElementById(
+                "tapText"
+            ).textContent =
+                "اضغط مطولًا للتشغيل";
+        }
+    }
 }
 
 
 /* =========================
-   LONG PRESS
+   NORMAL CLICK
+========================= */
+
+async function normalClick(){
+
+    if(isHolding){
+        return;
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                "/api/mining/click",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        initData:
+                            tg.initData
+
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!data.success){
+
+            showToast(
+                data.message ||
+                "انتهت الطاقة"
+            );
+
+            return;
+        }
+
+
+        balance =
+            Number(
+                data.user.balance || 0
+            );
+
+
+        energy =
+            Number(
+                data.user.energy || 0
+            );
+
+
+        updateUI();
+
+
+        showToast(
+            "+0.0000001 EM"
+        );
+
+
+    }catch(error){
+
+        console.log(error);
+
+        showToast(
+            "خطأ في الاتصال"
+        );
+    }
+}
+
+
+/* =========================
+   FAST COUNTER
+========================= */
+
+function startFastCounter(){
+
+    if(isHolding){
+        return;
+    }
+
+
+    isHolding = true;
+
+
+    const circle =
+        document.getElementById(
+            "miningCircle"
+        );
+
+
+    circle.classList.add(
+        "fast-mode"
+    );
+
+
+    document.getElementById(
+        "tapText"
+    ).textContent =
+        "⚡ العداد السريع يعمل";
+
+
+    /*
+       إرسال دفعة كل 250ms
+       حتى لا نرسل عشرات الطلبات
+       في الثانية إلى السيرفر.
+    */
+
+    fastTimer =
+        setInterval(
+            sendFastReward,
+            250
+        );
+}
+
+
+/* =========================
+   FAST REWARD
+========================= */
+
+async function sendFastReward(){
+
+    if(!isHolding){
+        return;
+    }
+
+
+    if(energy <= 0){
+
+        stopFastCounter();
+
+        showToast(
+            "⚡ انتهت الطاقة"
+        );
+
+        return;
+    }
+
+
+    try{
+
+        /*
+           0.25 ثانية من الضغط
+        */
+
+        const response =
+            await fetch(
+                "/api/mining/fast",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:JSON.stringify({
+
+                        initData:
+                            tg.initData,
+
+                        seconds:0.25
+
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!data.success){
+
+            stopFastCounter();
+
+            showToast(
+                data.message ||
+                "انتهت الطاقة"
+            );
+
+            return;
+        }
+
+
+        balance =
+            Number(
+                data.user.balance || 0
+            );
+
+
+        energy =
+            Number(
+                data.user.energy || 0
+            );
+
+
+        updateUI();
+
+
+    }catch(error){
+
+        console.log(error);
+
+        stopFastCounter();
+
+        showToast(
+            "خطأ في الاتصال"
+        );
+    }
+}
+
+
+/* =========================
+   STOP FAST
+========================= */
+
+function stopFastCounter(){
+
+    isHolding = false;
+
+
+    if(fastTimer){
+
+        clearInterval(
+            fastTimer
+        );
+
+        fastTimer = null;
+    }
+
+
+    const circle =
+        document.getElementById(
+            "miningCircle"
+        );
+
+
+    circle.classList.remove(
+        "fast-mode"
+    );
+
+
+    updateUI();
+}
+
+
+/* =========================
+   LONG PRESS TOUCH
 ========================= */
 
 const circle =
-document.getElementById(
-"miningCircle"
+    document.getElementById(
+        "miningCircle"
+    );
+
+
+circle.addEventListener(
+    "touchstart",
+    function(e){
+
+        e.preventDefault();
+
+        touchStarted = true;
+
+
+        clearTimeout(
+            longPressTimer
+        );
+
+
+        longPressTimer =
+            setTimeout(
+                function(){
+
+                    startFastCounter();
+
+                },
+                700
+            );
+
+    },
+    {
+        passive:false
+    }
 );
 
 
 circle.addEventListener(
-"touchstart",
-function(e){
+    "touchend",
+    function(e){
 
-e.preventDefault();
-
-longPressTriggered = false;
-
-longPressTimer =
-setTimeout(
-function(){
-
-longPressTriggered = true;
-
-toggleMining();
-
-},
-700
-);
-
-},
-{passive:false}
-);
+        e.preventDefault();
 
 
-circle.addEventListener(
-"touchend",
-function(){
+        clearTimeout(
+            longPressTimer
+        );
 
-clearTimeout(
-longPressTimer
-);
 
-}
+        if(isHolding){
+
+            stopFastCounter();
+
+        }else{
+
+            normalClick();
+        }
+
+
+        touchStarted = false;
+
+    },
+    {
+        passive:false
+    }
 );
 
 
 circle.addEventListener(
-"touchcancel",
-function(){
+    "touchcancel",
+    function(){
 
-clearTimeout(
-longPressTimer
+        clearTimeout(
+            longPressTimer
+        );
+
+
+        if(isHolding){
+
+            stopFastCounter();
+        }
+
+
+        touchStarted = false;
+
+    }
 );
 
-}
-);
 
-
-/* الكمبيوتر */
+/* =========================
+   MOUSE
+========================= */
 
 circle.addEventListener(
-"mousedown",
-function(){
+    "mousedown",
+    function(){
 
-longPressTriggered = false;
+        longPressTimer =
+            setTimeout(
+                function(){
 
-longPressTimer =
-setTimeout(
-function(){
+                    startFastCounter();
 
-longPressTriggered = true;
-
-toggleMining();
-
-},
-700
-);
-
-}
+                },
+                700
+            );
+    }
 );
 
 
 circle.addEventListener(
-"mouseup",
-function(){
+    "mouseup",
+    function(){
 
-clearTimeout(
-longPressTimer
+        clearTimeout(
+            longPressTimer
+        );
+
+
+        if(isHolding){
+
+            stopFastCounter();
+
+        }else{
+
+            normalClick();
+        }
+    }
 );
 
-}
+
+circle.addEventListener(
+    "mouseleave",
+    function(){
+
+        clearTimeout(
+            longPressTimer
+        );
+
+
+        if(isHolding){
+
+            stopFastCounter();
+        }
+    }
 );
 
 
@@ -1742,189 +2271,231 @@ longPressTimer
 
 async function toggleMining(){
 
-if(mining){
+    if(mining){
 
-await stopMining();
+        await stopMining();
 
-}else{
+    }else{
 
-await startMining();
-
-}
-
+        await startMining();
+    }
 }
 
 
 async function startMining(){
 
-try{
+    try{
 
-const response =
-await fetch(
-"/api/mining/start",
-{
+        const response =
+            await fetch(
+                "/api/mining/start",
+                {
+                    method:"POST",
 
-method:"POST",
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
 
-headers:{
-"Content-Type":
-"application/json"
-},
+                    body:JSON.stringify({
 
-body:JSON.stringify({
-initData:tg.initData
-})
+                        initData:
+                            tg.initData
 
-});
+                    })
+                }
+            );
 
-const data =
-await response.json();
 
-if(!data.success){
+        const data =
+            await response.json();
 
-showToast(
-data.message ||
-"تعذر تشغيل التعدين"
-);
 
-return;
+        if(!data.success){
 
-}
+            showToast(
+                data.message ||
+                "تعذر تشغيل التعدين"
+            );
 
-mining = true;
+            return;
+        }
 
-showToast(
-"⛏️ تم تشغيل التعدين"
-);
 
-updateUI();
+        mining = true;
 
-}catch(error){
 
-showToast(
-"خطأ في الاتصال"
-);
+        balance =
+            Number(
+                data.user.balance ||
+                balance
+            );
 
-}
 
+        energy =
+            Number(
+                data.user.energy ||
+                energy
+            );
+
+
+        updateUI();
+
+
+        showToast(
+            "⛏️ تم تشغيل التعدين"
+        );
+
+
+    }catch(error){
+
+        console.log(error);
+
+        showToast(
+            "خطأ في الاتصال"
+        );
+    }
 }
 
 
 async function stopMining(){
 
-try{
+    try{
 
-const response =
-await fetch(
-"/api/mining/stop",
-{
+        const response =
+            await fetch(
+                "/api/mining/stop",
+                {
+                    method:"POST",
 
-method:"POST",
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
 
-headers:{
-"Content-Type":
-"application/json"
-},
+                    body:JSON.stringify({
 
-body:JSON.stringify({
-initData:tg.initData
-})
+                        initData:
+                            tg.initData
 
-});
+                    })
+                }
+            );
 
-const data =
-await response.json();
 
-if(data.success){
+        const data =
+            await response.json();
 
-balance =
-Number(data.user.balance || 0);
 
-energy =
-Number(data.user.energy || 0);
+        if(data.success){
 
-mining = false;
+            balance =
+                Number(
+                    data.user.balance || 0
+                );
 
-showToast(
-"⛏️ تم إيقاف التعدين"
-);
 
-updateUI();
+            energy =
+                Number(
+                    data.user.energy || 0
+                );
 
-}
 
-}catch(error){
+            mining = false;
 
-showToast(
-"خطأ في الاتصال"
-);
 
-}
+            updateUI();
 
+
+            showToast(
+                "⛏️ تم إيقاف التعدين"
+            );
+        }
+
+
+    }catch(error){
+
+        console.log(error);
+
+        showToast(
+            "خطأ في الاتصال"
+        );
+    }
 }
 
 
 /* =========================
-   تحديث الرصيد أثناء التعدين
+   MINING STATUS
 ========================= */
 
 async function updateMiningStatus(){
 
-if(!tg.initData){
-return;
+    if(!tg.initData){
+        return;
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                "/api/mining/status",
+                {
+                    headers:{
+                        "x-telegram-init-data":
+                            tg.initData
+                    }
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(!data.success){
+            return;
+        }
+
+
+        balance =
+            Number(
+                data.balance || 0
+            );
+
+
+        energy =
+            Number(
+                data.energy || 0
+            );
+
+
+        mining =
+            !!data.mining;
+
+
+        miningRate =
+            Number(
+                data.rate ||
+                miningRate
+            );
+
+
+        updateUI();
+
+
+    }catch(error){
+
+        console.log(error);
+    }
 }
 
-try{
 
-const response =
-await fetch(
-"/api/mining/status",
-{
-
-headers:{
-"x-telegram-init-data":
-tg.initData
-}
-
-});
-
-const data =
-await response.json();
-
-if(!data.success){
-return;
-}
-
-balance =
-Number(data.balance || 0);
-
-energy =
-Number(data.energy || 0);
-
-mining =
-!!data.mining;
-
-miningRate =
-Number(data.mining_rate || miningRate);
-
-updateUI();
-
-}catch(error){
-
-console.log(error);
-
-}
-
-}
-
-
-/*
-  تحديث كل 5 ثوان
-*/
+/* كل 5 ثوان */
 
 setInterval(
-updateMiningStatus,
-5000
+    updateMiningStatus,
+    5000
 );
 
 
@@ -1934,136 +2505,141 @@ updateMiningStatus,
 
 function copyReferral(){
 
-const input =
-document.getElementById(
-"referralLink"
-);
+    const input =
+        document.getElementById(
+            "referralLink"
+        );
 
-if(navigator.clipboard){
 
-navigator.clipboard.writeText(
-input.value
-);
+    if(
+        navigator.clipboard
+    ){
 
-showToast(
-"👥 تم نسخ رابط الدعوة"
-);
+        navigator.clipboard.writeText(
+            input.value
+        );
 
-}else{
 
-input.select();
+        showToast(
+            "👥 تم نسخ رابط الدعوة"
+        );
 
-document.execCommand("copy");
+    }else{
 
-showToast(
-"👥 تم نسخ الرابط"
-);
+        input.select();
 
-}
+        document.execCommand(
+            "copy"
+        );
 
+        showToast(
+            "👥 تم نسخ الرابط"
+        );
+    }
 }
 
 
 /* =========================
-   TASKS GO / CLAIM
+   TASKS
 ========================= */
 
 function goTask(
-id,
-url
+    id,
+    url
 ){
 
-const button =
-document.getElementById(id);
-
-if(!button){
-return;
-}
+    const button =
+        document.getElementById(id);
 
 
-/*
-  نفتح المهمة أولًا
-*/
-
-window.open(
-url,
-"_blank"
-);
+    if(!button){
+        return;
+    }
 
 
-/*
-  بعد العودة تصبح CLAIM
-*/
+    window.open(
+        url,
+        "_blank"
+    );
 
-button.textContent =
-"CLAIM";
 
-button.classList.add(
-"claim"
-);
+    button.textContent =
+        "CLAIM";
 
-button.onclick =
-function(){
 
-claimTask(id);
+    button.classList.add(
+        "claim"
+    );
 
-};
 
-showToast(
-"🎯 عند العودة اضغط CLAIM"
-);
+    button.onclick =
+        function(){
 
+            claimTask(id);
+        };
+
+
+    showToast(
+        "🎯 عند العودة اضغط CLAIM"
+    );
 }
 
 
 function claimTask(id){
 
-const button =
-document.getElementById(id);
-
-if(
-!button ||
-!button.classList.contains("claim")
-){
-
-return;
-
-}
+    const button =
+        document.getElementById(id);
 
 
-/*
-  الواجهة جاهزة.
-  لاحقًا سنربط CLAIM
-  بالخادم لمنع التلاعب.
-*/
+    if(
+        !button ||
+        !button.classList.contains(
+            "claim"
+        )
+    ){
 
-let reward = 0;
+        return;
+    }
 
-if(id.startsWith("video")){
-reward = 0.050;
-}else{
-reward = 0.030;
-}
 
-balance += reward;
+    let reward = 0;
 
-button.textContent =
-"تم ✓";
 
-button.disabled = true;
+    if(
+        id.startsWith("video")
+    ){
 
-button.classList.remove(
-"claim"
-);
+        reward = 0.050;
 
-updateUI();
+    }else{
 
-showToast(
-"+" +
-reward.toFixed(3) +
-" EM 🎉"
-);
+        reward = 0.030;
+    }
 
+
+    balance += reward;
+
+
+    button.textContent =
+        "تم ✓";
+
+
+    button.disabled = true;
+
+
+    button.classList.remove(
+        "claim"
+    );
+
+
+    updateUI();
+
+
+    showToast(
+        "+" +
+        reward.toFixed(3) +
+        " EM 🎉"
+    );
 }
 
 
@@ -2073,10 +2649,9 @@ reward.toFixed(3) +
 
 function dailyTask(){
 
-showToast(
-"🎁 المهمة اليومية ستضاف قريبًا"
-);
-
+    showToast(
+        "🎁 المهمة اليومية ستضاف قريبًا"
+    );
 }
 
 
@@ -2085,15 +2660,14 @@ showToast(
 ========================= */
 
 function buyPackage(
-price,
-rate,
-packageEnergy
+    price,
+    rate,
+    packageEnergy
 ){
 
-showToast(
-"💳 سيتم فتح الدفع الآمن قريبًا"
-);
-
+    showToast(
+        "💳 سيتم فتح الدفع الآمن قريبًا"
+    );
 }
 
 
@@ -2103,18 +2677,19 @@ showToast(
 
 function showSection(id){
 
-const element =
-document.getElementById(id);
+    const element =
+        document.getElementById(id);
 
-if(element){
 
-element.scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
+    if(element){
 
-}
+        element.scrollIntoView({
 
+            behavior:"smooth",
+
+            block:"start"
+        });
+    }
 }
 
 
@@ -2124,27 +2699,29 @@ block:"start"
 
 function showToast(message){
 
-const toast =
-document.getElementById(
-"toast"
-);
+    const toast =
+        document.getElementById(
+            "toast"
+        );
 
-toast.textContent =
-message;
 
-toast.style.display =
-"block";
+    toast.textContent =
+        message;
 
-setTimeout(
-function(){
 
-toast.style.display =
-"none";
+    toast.style.display =
+        "block";
 
-},
-2000
-);
 
+    setTimeout(
+        function(){
+
+            toast.style.display =
+                "none";
+
+        },
+        2000
+    );
 }
 
 
@@ -2159,5 +2736,6 @@ loadUser();
 </script>
 
 </body>
+
 </html>
 ```
