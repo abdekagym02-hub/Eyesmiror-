@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -95,8 +96,6 @@ body{
     margin-top:-12px;
     margin-bottom:20px;
 }
-
-/* التعدين */
 
 .level{
     text-align:center;
@@ -205,8 +204,6 @@ body{
     margin-top:6px;
 }
 
-/* البطاقات */
-
 .card{
     background:#111;
     border:1px solid #292929;
@@ -258,8 +255,6 @@ body{
     font-weight:bold;
 }
 
-/* الملف الشخصي */
-
 .profile{
     text-align:center;
 }
@@ -289,8 +284,6 @@ body{
     gap:12px;
 }
 
-/* الإحالات */
-
 .refLink{
     background:#080808;
     border:1px dashed #665300;
@@ -300,8 +293,6 @@ body{
     word-break:break-all;
     margin:15px 0;
 }
-
-/* Navigation */
 
 .nav{
     position:fixed;
@@ -341,8 +332,6 @@ body{
     filter:drop-shadow(0 0 7px #ffd000);
 }
 
-/* تنبيه */
-
 .toast{
     position:fixed;
     top:20px;
@@ -370,7 +359,9 @@ body{
 <header class="header">
     <div>
         <div class="logo">👁️ EyesMiror</div>
-        <div class="welcome">مرحبًا بك في عالم EyesMiror</div>
+        <div class="welcome" id="welcomeText">
+            جاري تحميل حسابك...
+        </div>
     </div>
 
     <div class="balanceBox">
@@ -381,7 +372,6 @@ body{
 
 <main class="content">
 
-<!-- الرئيسية -->
 <section id="home" class="page active">
 
     <div class="title">🏠 الرئيسية</div>
@@ -398,6 +388,7 @@ body{
         <div style="font-size:34px;font-weight:900;color:#ffd000;margin-top:20px">
             <span id="homeBalance">0</span>
         </div>
+
         <p>EM Points</p>
     </div>
 
@@ -426,8 +417,6 @@ body{
 
 </section>
 
-
-<!-- التعدين -->
 <section id="mine" class="page">
 
     <div class="title">⛏️ التعدين</div>
@@ -454,7 +443,9 @@ body{
             <strong id="mineStatus">متوقف</strong>
         </div>
 
-        <button class="mainButton" onclick="toggleMining()" id="mineButton">
+        <button class="mainButton"
+                onclick="toggleMining()"
+                id="mineButton">
             🚀 تفعيل التعدين
         </button>
 
@@ -476,8 +467,6 @@ body{
 
 </section>
 
-
-<!-- المهام -->
 <section id="tasks" class="page">
 
     <div class="title">🎯 المهام</div>
@@ -504,7 +493,6 @@ body{
 
     </div>
 
-
     <div class="card">
 
         <div class="cardHeader">
@@ -524,7 +512,6 @@ body{
         </button>
 
     </div>
-
 
     <div class="card">
 
@@ -549,8 +536,6 @@ body{
 
 </section>
 
-
-<!-- الأصدقاء -->
 <section id="friends" class="page">
 
     <div class="title">👥 الإحالات</div>
@@ -586,8 +571,6 @@ body{
 
 </section>
 
-
-<!-- الملف الشخصي -->
 <section id="profile" class="page">
 
     <div class="title">👤 الملف الشخصي</div>
@@ -634,7 +617,6 @@ body{
 
 </main>
 
-
 <nav class="nav">
 
     <div class="navItem active" onclick="showPage('home',this)">
@@ -668,7 +650,6 @@ body{
 
 </div>
 
-
 <script>
 
 const tg = window.Telegram && window.Telegram.WebApp;
@@ -678,25 +659,12 @@ if(tg){
     tg.expand();
 }
 
+/* بيانات الحساب */
 
-/* البيانات */
-
-let balance = parseFloat(
-    localStorage.getItem("eyes_balance")
-) || 0;
-
-let level = parseInt(
-    localStorage.getItem("eyes_level")
-) || 1;
-
-let friends = parseInt(
-    localStorage.getItem("eyes_friends")
-) || 0;
-
-let mining = localStorage.getItem("eyes_mining") === "true";
-
-
-/* معدل النقاط */
+let balance = 0;
+let level = 1;
+let friends = 0;
+let mining = false;
 
 const miningRate = 0.10;
 
@@ -705,19 +673,17 @@ const miningRate = 0.10;
 
 function update(){
 
-    balance = Math.max(0,balance);
-
     document.getElementById("headerBalance").textContent =
-        balance.toFixed(2);
+        Number(balance).toFixed(2);
 
     document.getElementById("homeBalance").textContent =
-        balance.toFixed(2);
+        Number(balance).toFixed(2);
 
     document.getElementById("mineBalance").textContent =
-        balance.toFixed(2);
+        Number(balance).toFixed(2);
 
     document.getElementById("profileBalance").textContent =
-        balance.toFixed(2);
+        Number(balance).toFixed(2);
 
     document.getElementById("level").textContent =
         level;
@@ -747,17 +713,82 @@ function update(){
         mining ? "يعمل 🟢" : "متوقف";
 
     document.getElementById("mineButton").textContent =
-        mining ? "⏸️ إيقاف التعدين" : "🚀 تفعيل التعدين";
-
-    localStorage.setItem("eyes_balance",balance);
-    localStorage.setItem("eyes_level",level);
-    localStorage.setItem("eyes_friends",friends);
-    localStorage.setItem("eyes_mining",mining);
-
+        mining
+        ? "⏸️ إيقاف التعدين"
+        : "🚀 تفعيل التعدين";
 }
 
 
-/* التعدين */
+/* تحميل المستخدم من Telegram */
+
+async function loadUser(){
+
+    if(!tg || !tg.initData){
+
+        document.getElementById("welcomeText").textContent =
+            "افتح EyesMiror من Telegram";
+
+        return;
+    }
+
+    try{
+
+        const response = await fetch(
+            "/api/user",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    initData:tg.initData
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if(!response.ok || !data.success){
+
+            throw new Error(
+                data.message || "فشل تحميل الحساب"
+            );
+        }
+
+        const user = data.user;
+
+        balance = Number(user.balance) || 0;
+        level = Number(user.level) || 1;
+        friends = Number(user.friends) || 0;
+
+        const name =
+            user.first_name ||
+            user.username ||
+            "مستخدم";
+
+        document.getElementById("profileName").textContent =
+            name;
+
+        document.getElementById("welcomeText").textContent =
+            "مرحبًا " + name + " 👋";
+
+        update();
+
+        showToast("✅ تم تحميل حسابك");
+
+    }catch(error){
+
+        console.error(error);
+
+        document.getElementById("welcomeText").textContent =
+            "تعذر تحميل الحساب";
+
+        showToast("❌ تعذر الاتصال بالسيرفر");
+    }
+}
+
+
+/* التعدين التجريبي */
 
 function toggleMining(){
 
@@ -772,8 +803,6 @@ function toggleMining(){
     update();
 }
 
-
-/* إضافة النقاط */
 
 setInterval(function(){
 
@@ -796,26 +825,11 @@ setInterval(function(){
 },1000);
 
 
-/* المهام */
+/* المهام التجريبية */
 
 function dailyReward(){
 
-    const today =
-        new Date().toISOString().slice(0,10);
-
-    if(localStorage.getItem("daily_reward") === today){
-
-        showToast("لقد استلمت مكافأة اليوم بالفعل");
-
-        return;
-    }
-
     balance += 10;
-
-    localStorage.setItem(
-        "daily_reward",
-        today
-    );
 
     document.getElementById("dailyButton").textContent =
         "تم الاستلام ✓";
@@ -828,19 +842,7 @@ function dailyReward(){
 
 function videoReward(){
 
-    if(localStorage.getItem("video_done") === "true"){
-
-        showToast("لقد أكملت هذه المهمة");
-
-        return;
-    }
-
     balance += 5;
-
-    localStorage.setItem(
-        "video_done",
-        "true"
-    );
 
     document.getElementById("videoButton").textContent =
         "تمت المهمة ✓";
@@ -857,22 +859,16 @@ function showPage(id,element){
 
     document.querySelectorAll(".page")
     .forEach(function(page){
-
         page.classList.remove("active");
-
     });
 
     document.getElementById(id)
         .classList.add("active");
 
-
     document.querySelectorAll(".navItem")
     .forEach(function(item){
-
         item.classList.remove("active");
-
     });
-
 
     if(element){
 
@@ -880,10 +876,14 @@ function showPage(id,element){
 
     }else{
 
-        document.querySelector(
-            '.navItem[onclick*="' + id + '"]'
-        ).classList.add("active");
+        const item =
+            document.querySelector(
+                '.navItem[onclick*="' + id + '"]'
+            );
 
+        if(item){
+            item.classList.add("active");
+        }
     }
 
     window.scrollTo(0,0);
@@ -894,8 +894,20 @@ function showPage(id,element){
 
 function invite(){
 
+    const user =
+        tg &&
+        tg.initDataUnsafe &&
+        tg.initDataUnsafe.user;
+
+    const username =
+        user && user.username
+        ? user.username
+        : user && user.id
+        ? user.id
+        : "";
+
     const link =
-        "https://t.me/Eyesmirorbot?start=ref";
+        "https://t.me/Eyesmirorbot?start=ref_" + username;
 
     const text =
         "👁️ انضم إلى EyesMiror!\n\n" +
@@ -921,11 +933,15 @@ function invite(){
             url:link
         });
 
-    }else{
+    }else if(navigator.clipboard){
 
         navigator.clipboard.writeText(text);
 
         showToast("تم نسخ رابط الدعوة");
+
+    }else{
+
+        showToast("افتح التطبيق من Telegram للمشاركة");
 
     }
 }
@@ -950,28 +966,13 @@ function showToast(message){
 }
 
 
-/* اسم مستخدم Telegram */
-
-if(tg && tg.initDataUnsafe && tg.initDataUnsafe.user){
-
-    const user =
-        tg.initDataUnsafe.user;
-
-    let name =
-        user.first_name || "مستخدم";
-
-    document.getElementById(
-        "profileName"
-    ).textContent = name;
-
-}
-
-
 /* تشغيل */
 
 update();
+loadUser();
 
 </script>
 
 </body>
 </html>
+```
