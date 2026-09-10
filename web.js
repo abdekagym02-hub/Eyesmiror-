@@ -9,66 +9,102 @@ app.use(express.static("public"));
 
 let db;
 
-/* =========================
-   Telegram InitData
-========================= */
+// ===============================
+// إعدادات EyesMiror
+// ===============================
+
+const CLICK_REWARD = 0.0000001;
+const FAST_REWARD = 0.000000001;
+
+const CLICK_ENERGY = 1;
+const FAST_ENERGY_PER_SECOND = 0.02;
+
+const AUTO_MINING_RATE = 0.0000012;
+
+// ===============================
+// التحقق من Telegram
+// ===============================
 
 function verifyTelegramWebAppData(initData) {
+
     const botToken = process.env.BOT_TOKEN;
 
     if (!initData || !botToken) {
         return null;
     }
 
-    const params = new URLSearchParams(initData);
-    const hash = params.get("hash");
-    const authDate = Number(params.get("auth_date"));
-
-    if (!hash || !authDate) {
-        return null;
-    }
-
-    // صلاحية بيانات Telegram لمدة 24 ساعة
-    const now = Math.floor(Date.now() / 1000);
-
-    if (now - authDate > 86400) {
-        return null;
-    }
-
-    params.delete("hash");
-
-    const dataCheckString = [...params.entries()]
-        .sort(([a], [b]) => a.localeCompare(b))
-        .map(([key, value]) => `${key}=${value}`)
-        .join("\n");
-
-    const secretKey = crypto
-        .createHmac("sha256", "WebAppData")
-        .update(botToken)
-        .digest();
-
-    const calculatedHash = crypto
-        .createHmac("sha256", secretKey)
-        .update(dataCheckString)
-        .digest("hex");
-
-    if (calculatedHash !== hash) {
-        return null;
-    }
-
     try {
-        return JSON.parse(params.get("user"));
-    } catch {
+
+        const params = new URLSearchParams(initData);
+
+        const hash = params.get("hash");
+        const authDate = Number(params.get("auth_date"));
+
+        if (!hash || !authDate) {
+            return null;
+        }
+
+        const now = Math.floor(Date.now() / 1000);
+
+        if (now - authDate > 86400) {
+            return null;
+        }
+
+        params.delete("hash");
+
+        const dataCheckString = [...params.entries()]
+            .sort(([a], [b]) => a.localeCompare(b))
+            .map(([key, value]) => `${key}=${value}`)
+            .join("\n");
+
+        const secretKey = crypto
+            .createHmac("sha256", "WebAppData")
+            .update(botToken)
+            .digest();
+
+        const calculatedHash = crypto
+            .createHmac("sha256", secretKey)
+            .update(dataCheckString)
+            .digest("hex");
+
+        if (calculatedHash !== hash) {
+            return null;
+        }
+
+        const user = params.get("user");
+
+        if (!user) {
+            return null;
+        }
+
+        return JSON.parse(user);
+
+    } catch (error) {
+
+        console.error("Telegram verification error:", error);
+
         return null;
     }
 }
 
+// ===============================
+// الحصول على مستخدم Telegram
+// ===============================
 
-/* =========================
-   حساب التعدين
-========================= */
+function getTelegramUser(req) {
 
-function calculateMining(user) {
+    const initData =
+        req.body?.initData ||
+        req.headers["x-telegram-init-data"];
+
+    return verifyTelegramWebAppData(initData);
+}
+
+// ===============================
+// حساب التعدين التلقائي
+// ===============================
+
+function calculateAutoMining(user) {
 
     if (!user.mining_start) {
         return {
@@ -79,50 +115,50 @@ function calculateMining(user) {
 
     const now = Date.now();
 
-    const elapsedMinutes =
-        (now - user.mining_start) / 60000;
+    const elapsedSeconds =
+        (now - user.mining_start) / 1000;
 
-    if (elapsedMinutes <= 0) {
+    if (elapsedSeconds <= 0) {
         return {
             points: 0,
             energyUsed: 0
         };
     }
 
-    /*
-      كل وحدة Energy = دقيقة تعدين
+    const energy =
+        Number(user.energy || 0);
 
-      مثال:
-      mining_rate = 0.001 EM/min
-      elapsed = 100 دقيقة
-      النتيجة = 0.1 EM
-    */
+    if (energy <= 0) {
 
-    const availableEnergy = Number(user.energy || 0);
+        return {
+            points: 0,
+            energyUsed: 0
+        };
+    }
 
-    const miningMinutes = Math.min(
-        elapsedMinutes,
-        availableEnergy
-    );
+    const energyUsed =
+        Math.min(
+            elapsedSeconds,
+            energy
+        );
 
-    const rate = Number(user.mining_rate || 0.001);
-
-    const points = miningMinutes * rate;
+    const points =
+        energyUsed * AUTO_MINING_RATE;
 
     return {
         points,
-        energyUsed: miningMinutes
+        energyUsed
     };
 }
 
-
-/* =========================
-   تحديث التعدين
-========================= */
+// ===============================
+// حفظ التعدين
+// ===============================
 
 async function settleMining(user) {
 
-    const result = calculateMining(user);
+    const result =
+        calculateAutoMining(user);
 
     if (result.points > 0) {
 
@@ -136,35 +172,32 @@ async function settleMining(user) {
                 Number(user.energy || 0) -
                 result.energyUsed
             );
-
-        user.mining_start = Date.now();
-
-        /*
-          إذا انتهت الطاقة يتوقف التعدين
-        */
-
-        if (user.energy <= 0) {
-            user.energy = 0;
-            user.mining_start = null;
-        }
-
-        await db.write();
     }
+
+    user.mining_start =
+        Date.now();
+
+    if (user.energy <= 0) {
+
+        user.energy = 0;
+        user.mining_start = null;
+    }
+
+    await db.write();
 
     return result;
 }
 
-
-/* =========================
-   API المستخدم
-========================= */
+// ===============================
+// إنشاء / تحميل المستخدم
+// ===============================
 
 app.post("/api/user", async (req, res) => {
 
     try {
 
         const telegramUser =
-            verifyTelegramWebAppData(req.body.initData);
+            getTelegramUser(req);
 
         if (!telegramUser) {
 
@@ -176,8 +209,6 @@ app.post("/api/user", async (req, res) => {
 
         const userId =
             String(telegramUser.id);
-
-        /* مستخدم جديد */
 
         if (!db.data.users[userId]) {
 
@@ -193,17 +224,10 @@ app.post("/api/user", async (req, res) => {
 
                 balance: 0,
 
-                /*
-                  التعدين المجاني
-                */
-
-                mining_rate: 0.001,
-
-                /*
-                  100 دقيقة تعدين مجانية
-                */
-
                 energy: 100,
+
+                mining_rate:
+                    AUTO_MINING_RATE,
 
                 mining_start: null,
 
@@ -216,47 +240,87 @@ app.post("/api/user", async (req, res) => {
 
             await db.write();
 
-        } else {
+        }
 
-            /*
-              ضمان وجود الحقول القديمة
-            */
+        const user =
+            db.data.users[userId];
 
-            const user =
-                db.data.users[userId];
+        // إصلاح المستخدمين القدامى
 
-            if (user.energy === undefined) {
-                user.energy = 100;
+        if (user.balance === undefined)
+            user.balance = 0;
+
+        if (user.energy === undefined)
+            user.energy = 100;
+
+        if (user.mining_start === undefined)
+            user.mining_start = null;
+
+        if (user.mining_rate === undefined)
+            user.mining_rate = AUTO_MINING_RATE;
+
+        if (user.friends === undefined)
+            user.friends = 0;
+
+        if (user.level === undefined)
+            user.level = 1;
+
+        // حساب التعدين الذي حدث أثناء إغلاق التطبيق
+
+        if (user.mining_start) {
+
+            const result =
+                calculateAutoMining(user);
+
+            if (result.points > 0) {
+
+                user.balance += result.points;
+
+                user.energy =
+                    Math.max(
+                        0,
+                        user.energy -
+                        result.energyUsed
+                    );
             }
 
-            if (user.mining_start === undefined) {
+            if (user.energy <= 0) {
+
+                user.energy = 0;
                 user.mining_start = null;
-            }
 
-            if (user.mining_rate === undefined) {
-                user.mining_rate = 0.001;
-            }
+            } else {
 
-            if (user.level === undefined) {
-                user.level = 1;
+                user.mining_start = Date.now();
             }
 
             await db.write();
         }
 
-        /*
-          نحسب التعدين المتراكم
-          حتى لو كان التطبيق مغلقاً
-        */
-
-        const user =
-            db.data.users[userId];
-
-        await settleMining(user);
-
         res.json({
+
             success: true,
-            user
+
+            user: {
+                id: user.id,
+                username: user.username,
+                first_name: user.first_name,
+
+                balance:
+                    Number(user.balance),
+
+                energy:
+                    Number(user.energy),
+
+                friends:
+                    Number(user.friends),
+
+                level:
+                    Number(user.level),
+
+                mining:
+                    !!user.mining_start
+            }
         });
 
     } catch (error) {
@@ -270,17 +334,17 @@ app.post("/api/user", async (req, res) => {
     }
 });
 
+// ===============================
+// الضغطة العادية
+// 0.0000001
+// ===============================
 
-/* =========================
-   بدء التعدين
-========================= */
-
-app.post("/api/mining/start", async (req, res) => {
+app.post("/api/mining/click", async (req, res) => {
 
     try {
 
         const telegramUser =
-            verifyTelegramWebAppData(req.body.initData);
+            getTelegramUser(req);
 
         if (!telegramUser) {
 
@@ -304,9 +368,219 @@ app.post("/api/mining/start", async (req, res) => {
             });
         }
 
-        /*
-          إذا كان التعدين يعمل
-        */
+        // أولًا نحسب التعدين التلقائي السابق
+
+        if (user.mining_start) {
+
+            const result =
+                calculateAutoMining(user);
+
+            user.balance += result.points;
+
+            user.energy =
+                Math.max(
+                    0,
+                    user.energy -
+                    result.energyUsed
+                );
+
+            user.mining_start =
+                Date.now();
+
+            if (user.energy <= 0) {
+                user.energy = 0;
+                user.mining_start = null;
+            }
+        }
+
+        // التحقق من الطاقة
+
+        if (Number(user.energy) < CLICK_ENERGY) {
+
+            await db.write();
+
+            return res.json({
+
+                success: false,
+
+                message: "انتهت الطاقة",
+
+                user
+            });
+        }
+
+        // إضافة المكافأة
+
+        user.balance =
+            Number(user.balance) +
+            CLICK_REWARD;
+
+        user.energy =
+            Number(user.energy) -
+            CLICK_ENERGY;
+
+        await db.write();
+
+        res.json({
+
+            success: true,
+
+            reward: CLICK_REWARD,
+
+            user
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            success: false,
+            message: "حدث خطأ"
+        });
+    }
+});
+
+// ===============================
+// الضغط المطوّل
+// يحسب كمية FAST_REWARD
+// ===============================
+
+app.post("/api/mining/fast", async (req, res) => {
+
+    try {
+
+        const telegramUser =
+            getTelegramUser(req);
+
+        if (!telegramUser) {
+
+            return res.status(401).json({
+                success: false,
+                message: "بيانات Telegram غير صالحة"
+            });
+        }
+
+        const userId =
+            String(telegramUser.id);
+
+        const user =
+            db.data.users[userId];
+
+        if (!user) {
+
+            return res.status(404).json({
+                success: false,
+                message: "المستخدم غير موجود"
+            });
+        }
+
+        let seconds =
+            Number(req.body.seconds || 0);
+
+        // حماية من إرسال أرقام كبيرة من الهاتف
+
+        seconds =
+            Math.min(
+                Math.max(seconds, 0),
+                10
+            );
+
+        if (seconds <= 0) {
+
+            return res.json({
+                success: false,
+                message: "وقت غير صالح",
+                user
+            });
+        }
+
+        const requiredEnergy =
+            seconds *
+            FAST_ENERGY_PER_SECOND;
+
+        if (Number(user.energy) < requiredEnergy) {
+
+            return res.json({
+
+                success: false,
+
+                message: "الطاقة غير كافية",
+
+                user
+            });
+        }
+
+        const reward =
+            seconds *
+            20 *
+            FAST_REWARD;
+
+        user.balance =
+            Number(user.balance) +
+            reward;
+
+        user.energy =
+            Number(user.energy) -
+            requiredEnergy;
+
+        await db.write();
+
+        res.json({
+
+            success: true,
+
+            reward,
+
+            energyUsed:
+                requiredEnergy,
+
+            user
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            success: false,
+            message: "حدث خطأ"
+        });
+    }
+});
+
+// ===============================
+// تشغيل التعدين التلقائي
+// ===============================
+
+app.post("/api/mining/start", async (req, res) => {
+
+    try {
+
+        const telegramUser =
+            getTelegramUser(req);
+
+        if (!telegramUser) {
+
+            return res.status(401).json({
+                success: false,
+                message: "بيانات Telegram غير صالحة"
+            });
+        }
+
+        const userId =
+            String(telegramUser.id);
+
+        const user =
+            db.data.users[userId];
+
+        if (!user) {
+
+            return res.status(404).json({
+                success: false,
+                message: "المستخدم غير موجود"
+            });
+        }
 
         if (user.mining_start) {
 
@@ -317,27 +591,31 @@ app.post("/api/mining/start", async (req, res) => {
             });
         }
 
-        /*
-          لا توجد طاقة
-        */
-
-        if (Number(user.energy || 0) <= 0) {
+        if (Number(user.energy) <= 0) {
 
             return res.json({
+
                 success: false,
+
                 mining: false,
+
                 message: "انتهت الطاقة",
+
                 user
             });
         }
 
-        user.mining_start = Date.now();
+        user.mining_start =
+            Date.now();
 
         await db.write();
 
         res.json({
+
             success: true,
+
             mining: true,
+
             user
         });
 
@@ -352,17 +630,16 @@ app.post("/api/mining/start", async (req, res) => {
     }
 });
 
-
-/* =========================
-   إيقاف التعدين
-========================= */
+// ===============================
+// إيقاف التعدين
+// ===============================
 
 app.post("/api/mining/stop", async (req, res) => {
 
     try {
 
         const telegramUser =
-            verifyTelegramWebAppData(req.body.initData);
+            getTelegramUser(req);
 
         if (!telegramUser) {
 
@@ -386,32 +663,28 @@ app.post("/api/mining/stop", async (req, res) => {
             });
         }
 
-        /*
-          حساب كل النقاط منذ آخر تشغيل
-        */
+        if (user.mining_start) {
 
-        const result =
-            calculateMining(user);
+            const result =
+                calculateAutoMining(user);
 
-        user.balance =
-            Number(user.balance || 0) +
-            result.points;
+            user.balance += result.points;
 
-        user.energy =
-            Math.max(
-                0,
-                Number(user.energy || 0) -
-                result.energyUsed
-            );
+            user.energy =
+                Math.max(
+                    0,
+                    user.energy -
+                    result.energyUsed
+                );
+        }
 
         user.mining_start = null;
 
         await db.write();
 
         res.json({
-            success: true,
 
-            earned: result.points,
+            success: true,
 
             user
         });
@@ -427,10 +700,9 @@ app.post("/api/mining/stop", async (req, res) => {
     }
 });
 
-
-/* =========================
-   حالة التعدين
-========================= */
+// ===============================
+// حالة التعدين
+// ===============================
 
 app.get("/api/mining/status", async (req, res) => {
 
@@ -464,21 +736,17 @@ app.get("/api/mining/status", async (req, res) => {
             });
         }
 
-        /*
-          نحسب القيمة الحالية بدون انتظار إغلاق التطبيق
-        */
-
         const result =
-            calculateMining(user);
+            calculateAutoMining(user);
 
-        const currentBalance =
-            Number(user.balance || 0) +
+        const balance =
+            Number(user.balance) +
             result.points;
 
-        const currentEnergy =
+        const energy =
             Math.max(
                 0,
-                Number(user.energy || 0) -
+                Number(user.energy) -
                 result.energyUsed
             );
 
@@ -486,15 +754,15 @@ app.get("/api/mining/status", async (req, res) => {
 
             success: true,
 
-            mining: !!user.mining_start,
+            mining:
+                !!user.mining_start,
 
-            balance: currentBalance,
+            balance,
 
-            energy: currentEnergy,
+            energy,
 
-            mining_rate:
-                Number(user.mining_rate || 0.001)
-
+            rate:
+                AUTO_MINING_RATE
         });
 
     } catch (error) {
@@ -508,16 +776,18 @@ app.get("/api/mining/status", async (req, res) => {
     }
 });
 
-
-/* =========================
-   تشغيل السيرفر
-========================= */
+// ===============================
+// تشغيل السيرفر
+// ===============================
 
 async function main() {
 
-    db = await startDatabase();
+    db =
+        await startDatabase();
 
-    console.log("✅ قاعدة بيانات EyesMiror جاهزة");
+    console.log(
+        "✅ قاعدة بيانات EyesMiror جاهزة"
+    );
 
     const PORT =
         process.env.PORT || 3000;
