@@ -1,0 +1,19 @@
+{
+  "name": "eyesmiror",
+  "version": "1.0.0",
+  "description": "EyesMiror Telegram Mini App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node web.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "lowdb": "^7.0.1",
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
