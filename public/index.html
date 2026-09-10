@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
 <title>EyesMiror</title>
 
@@ -21,7 +22,7 @@ font-family:Arial,sans-serif;
 
 body{
 background:#08090d;
-color:white;
+color:#fff;
 min-height:100vh;
 }
 
@@ -36,7 +37,7 @@ padding-bottom:100px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:22px;
+margin-bottom:20px;
 }
 
 .logo{
@@ -67,13 +68,15 @@ font-size:14px;
 color:#ddd;
 }
 
+/* BALANCE */
+
 .balance-card{
 background:linear-gradient(145deg,#17130b,#0f1015);
 border:1px solid #4d3b18;
 border-radius:22px;
 padding:20px;
 text-align:center;
-margin-bottom:18px;
+margin-bottom:15px;
 }
 
 .balance-label{
@@ -94,18 +97,20 @@ font-size:13px;
 margin-top:3px;
 }
 
+/* MINING */
+
 .mining-card{
 background:#111218;
 border:1px solid #20212a;
 border-radius:25px;
 padding:22px 15px;
 text-align:center;
-margin-bottom:18px;
+margin-bottom:15px;
 }
 
 .mining-title{
 font-size:19px;
-margin-bottom:4px;
+margin-bottom:5px;
 }
 
 .mining-subtitle{
@@ -121,14 +126,16 @@ margin:auto;
 border-radius:50%;
 background:conic-gradient(
 #e0b34f 0deg,
-#e0b34f 35deg,
-#28231a 35deg,
+#e0b34f 45deg,
+#28231a 45deg,
 #28231a 360deg
 );
 padding:8px;
 cursor:pointer;
-box-shadow:0 0 30px rgba(224,179,79,.12);
+box-shadow:0 0 30px rgba(224,179,79,.15);
 transition:.15s;
+user-select:none;
+-webkit-user-select:none;
 }
 
 .mining-circle:active{
@@ -153,19 +160,44 @@ font-size:65px;
 .tap-text{
 color:#ddd;
 font-size:14px;
+margin-top:5px;
+}
+
+.auto-text{
+color:#d6a84f;
+font-size:11px;
+margin-top:6px;
 }
 
 .rate{
-margin-top:17px;
+margin-top:15px;
 color:#d5aa4b;
 font-size:14px;
 }
 
 .energy{
 margin-top:8px;
-color:#888;
+color:#aaa;
 font-size:13px;
 }
+
+.energy-bar{
+height:8px;
+background:#24252d;
+border-radius:20px;
+margin:12px 10px 0;
+overflow:hidden;
+}
+
+.energy-fill{
+height:100%;
+width:100%;
+background:#d6a84f;
+border-radius:20px;
+transition:.3s;
+}
+
+/* STATS */
 
 .stats{
 display:grid;
@@ -197,10 +229,15 @@ font-size:11px;
 margin-top:3px;
 }
 
+/* SECTION */
+
 .section-title{
 font-size:18px;
 margin-bottom:12px;
+margin-top:22px;
 }
+
+/* EARN */
 
 .earn-grid{
 display:grid;
@@ -212,18 +249,13 @@ gap:12px;
 background:#111218;
 border:1px solid #20212a;
 border-radius:17px;
-padding:18px;
+padding:17px;
 cursor:pointer;
-transition:.15s;
-}
-
-.earn-card:active{
-transform:scale(.97);
 }
 
 .earn-icon{
-font-size:29px;
-margin-bottom:9px;
+font-size:28px;
+margin-bottom:8px;
 }
 
 .earn-title{
@@ -239,9 +271,116 @@ line-height:1.5;
 
 .reward{
 display:inline-block;
-margin-top:10px;
+margin-top:9px;
 color:#dcb052;
 font-size:12px;
+}
+
+/* TASKS */
+
+.task-list{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.task{
+background:#111218;
+border:1px solid #24252d;
+border-radius:16px;
+padding:14px;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.task-icon{
+width:45px;
+height:45px;
+border-radius:13px;
+background:#1b1c23;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:23px;
+flex-shrink:0;
+}
+
+.task-info{
+flex:1;
+}
+
+.task-title{
+font-weight:bold;
+font-size:14px;
+}
+
+.task-reward{
+color:#d6a84f;
+font-size:11px;
+margin-top:4px;
+}
+
+.task-btn{
+border:0;
+border-radius:10px;
+padding:9px 13px;
+font-weight:bold;
+background:#d6a84f;
+color:#111;
+cursor:pointer;
+}
+
+.task-btn.claim{
+background:#39b86f;
+color:#fff;
+}
+
+/* FRIENDS */
+
+.friend-box{
+background:#111218;
+border:1px solid #292a31;
+border-radius:18px;
+padding:18px;
+}
+
+.friend-title{
+font-size:16px;
+font-weight:bold;
+}
+
+.friend-description{
+color:#888;
+font-size:12px;
+line-height:1.6;
+margin-top:7px;
+}
+
+.referral{
+display:flex;
+margin-top:15px;
+gap:7px;
+}
+
+.referral input{
+flex:1;
+background:#08090d;
+border:1px solid #292a31;
+border-radius:10px;
+color:#aaa;
+padding:10px;
+font-size:11px;
+direction:ltr;
+}
+
+.copy-btn{
+border:0;
+background:#d6a84f;
+color:#111;
+border-radius:10px;
+padding:10px 12px;
+font-weight:bold;
 }
 
 /* PACKAGES */
@@ -250,7 +389,6 @@ font-size:12px;
 display:flex;
 flex-direction:column;
 gap:12px;
-margin-top:10px;
 }
 
 .package{
@@ -315,6 +453,8 @@ font-weight:bold;
 cursor:pointer;
 }
 
+/* NAV */
+
 .bottom-nav{
 position:fixed;
 bottom:0;
@@ -346,6 +486,8 @@ margin-bottom:3px;
 .nav.active{
 color:#e0b34f;
 }
+
+/* TOAST */
 
 .toast{
 position:fixed;
@@ -420,12 +562,12 @@ EM Points
 </div>
 
 <div class="mining-subtitle">
-اضغط على العين لجمع النقاط
+اضغط مطولًا على العين لتفعيل التعدين التلقائي
 </div>
 
 <div
-class="mining-circle"
-onclick="minePoint()">
+id="miningCircle"
+class="mining-circle">
 
 <div class="circle-inner">
 
@@ -433,8 +575,12 @@ onclick="minePoint()">
 👁️
 </div>
 
-<div class="tap-text">
+<div id="tapText" class="tap-text">
 اضغط هنا
+</div>
+
+<div id="autoText" class="auto-text">
+التعدين متوقف
 </div>
 
 </div>
@@ -442,11 +588,15 @@ onclick="minePoint()">
 </div>
 
 <div id="rate" class="rate">
-+0.001 EM لكل ضغطة
++0.001 EM / دقيقة
 </div>
 
 <div id="energy" class="energy">
-⚡ الطاقة: 100 / 100
+⚡ الطاقة: 100
+</div>
+
+<div class="energy-bar">
+<div id="energyFill" class="energy-fill"></div>
 </div>
 
 </div>
@@ -458,9 +608,11 @@ onclick="minePoint()">
 
 <div class="stat">
 
-<div class="stat-icon">👥</div>
+<div class="stat-icon">
+👥
+</div>
 
-<div id="friends" class="stat-number">
+<div id="friends">
 0
 </div>
 
@@ -470,12 +622,13 @@ onclick="minePoint()">
 
 </div>
 
-
 <div class="stat">
 
-<div class="stat-icon">⭐</div>
+<div class="stat-icon">
+⭐
+</div>
 
-<div id="level" class="stat-number">
+<div id="level">
 1
 </div>
 
@@ -485,12 +638,13 @@ onclick="minePoint()">
 
 </div>
 
-
 <div class="stat">
 
-<div class="stat-icon">⚡</div>
+<div class="stat-icon">
+⚡
+</div>
 
-<div id="energyStat" class="stat-number">
+<div id="energyStat">
 100
 </div>
 
@@ -512,9 +666,11 @@ onclick="minePoint()">
 <div class="earn-grid">
 
 <div class="earn-card"
-onclick="inviteFriends()">
+onclick="showSection('friendsSection')">
 
-<div class="earn-icon">👥</div>
+<div class="earn-icon">
+👥
+</div>
 
 <div class="earn-title">
 دعوة الأصدقاء
@@ -532,16 +688,18 @@ onclick="inviteFriends()">
 
 
 <div class="earn-card"
-onclick="watchVideos()">
+onclick="showSection('videosSection')">
 
-<div class="earn-icon">🎬</div>
+<div class="earn-icon">
+🎬
+</div>
 
 <div class="earn-title">
-مشاهدة الفيديوهات
+الفيديوهات
 </div>
 
 <div class="earn-description">
-شاهد الفيديوهات واحصل على نقاط.
+شاهد الفيديوهات ونفذ المهام.
 </div>
 
 <div class="reward">
@@ -552,16 +710,18 @@ onclick="watchVideos()">
 
 
 <div class="earn-card"
-onclick="openChannels()">
+onclick="showSection('adsSection')">
 
-<div class="earn-icon">📢</div>
+<div class="earn-icon">
+📢
+</div>
 
 <div class="earn-title">
-القنوات والإعلانات
+الإعلانات
 </div>
 
 <div class="earn-description">
-تابع القنوات والإعلانات للحصول على المكافآت.
+افتح المواقع والإعلانات واحصل على نقاط.
 </div>
 
 <div class="reward">
@@ -574,14 +734,16 @@ onclick="openChannels()">
 <div class="earn-card"
 onclick="dailyTask()">
 
-<div class="earn-icon">🎁</div>
+<div class="earn-icon">
+🎁
+</div>
 
 <div class="earn-title">
 المهمة اليومية
 </div>
 
 <div class="earn-description">
-نفذ المهمة اليومية واحصل على نقاط.
+مهمة يومية جديدة للحصول على نقاط.
 </div>
 
 <div class="reward">
@@ -593,13 +755,356 @@ onclick="dailyTask()">
 </div>
 
 
+<!-- FRIENDS -->
+
+<div id="friendsSection">
+
+<div class="section-title">
+👥 الأصدقاء والإحالات
+</div>
+
+<div class="friend-box">
+
+<div class="friend-title">
+دعوة أصدقائك
+</div>
+
+<div class="friend-description">
+شارك رابطك الخاص واحصل على مكافآت عند انضمام أصدقائك.
+</div>
+
+<div class="referral">
+
+<input
+id="referralLink"
+readonly
+value="جارٍ إنشاء الرابط...">
+
+<button
+class="copy-btn"
+onclick="copyReferral()">
+نسخ
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- VIDEOS -->
+
+<div id="videosSection">
+
+<div class="section-title">
+🎬 الفيديوهات
+</div>
+
+<div class="task-list">
+
+<div class="task">
+
+<div class="task-icon">
+▶️
+</div>
+
+<div class="task-info">
+
+<div class="task-title">
+YouTube Video 1
+</div>
+
+<div class="task-reward">
++0.050 EM
+</div>
+
+</div>
+
+<button
+id="video1"
+class="task-btn"
+onclick="goTask('video1','https://www.youtube.com/')">
+GO
+</button>
+
+</div>
+
+
+<div class="task">
+
+<div class="task-icon">
+▶️
+</div>
+
+<div class="task-info">
+
+<div class="task-title">
+YouTube Video 2
+</div>
+
+<div class="task-reward">
++0.050 EM
+</div>
+
+</div>
+
+<button
+id="video2"
+class="task-btn"
+onclick="goTask('video2','https://www.youtube.com/')">
+GO
+</button>
+
+</div>
+
+
+<div class="task">
+
+<div class="task-icon">
+▶️
+</div>
+
+<div class="task-info">
+
+<div class="task-title">
+YouTube Video 3
+</div>
+
+<div class="task-reward">
++0.050 EM
+</div>
+
+</div>
+
+<button
+id="video3"
+class="task-btn"
+onclick="goTask('video3','https://www.youtube.com/')">
+GO
+</button>
+
+</div>
+
+
+<div class="task">
+
+<div class="task-icon">
+▶️
+</div>
+
+<div class="task-info">
+
+<div class="task-title">
+YouTube Video 4
+</div>
+
+<div class="task-reward">
++0.050 EM
+</div>
+
+</div>
+
+<button
+id="video4"
+class="task-btn"
+onclick="goTask('video4','https://www.youtube.com/')">
+GO
+</button>
+
+</div>
+
+
+<div class="task">
+
+<div class="task-icon">
+▶️
+</div>
+
+<div class="task-info">
+
+<div class="task-title">
+YouTube Video 5
+</div>
+
+<div class="task-reward">
++0.050 EM
+</div>
+
+</div>
+
+<button
+id="video5"
+class="task-btn"
+onclick="goTask('video5','https://www.youtube.com/')">
+GO
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ADS -->
+
+<div id="adsSection">
+
+<div class="section-title">
+📢 المواقع والإعلانات
+</div>
+
+<div class="task-list">
+
+<div class="task">
+
+<div class="task-icon">
+🌐
+</div>
+
+<div class="task-info">
+
+<div class="task-title">
+Website 1
+</div>
+
+<div class="task-reward">
++0.030 EM
+</div>
+
+</div>
+
+<button
+id="ad1"
+class="task-btn"
+onclick="goTask('ad1','https://example.com')">
+GO
+</button>
+
+</div>
+
+
+<div class="task">
+
+<div class="task-icon">
+🌐
+</div>
+
+<div class="task-info">
+
+<div class="task-title">
+Website 2
+</div>
+
+<div class="task-reward">
++0.030 EM
+</div>
+
+</div>
+
+<button
+id="ad2"
+class="task-btn"
+onclick="goTask('ad2','https://example.com')">
+GO
+</button>
+
+</div>
+
+
+<div class="task">
+
+<div class="task-icon">
+🌐
+</div>
+
+<div class="task-info">
+
+<div class="task-title">
+Website 3
+</div>
+
+<div class="task-reward">
++0.030 EM
+</div>
+
+</div>
+
+<button
+id="ad3"
+class="task-btn"
+onclick="goTask('ad3','https://example.com')">
+GO
+</button>
+
+</div>
+
+
+<div class="task">
+
+<div class="task-icon">
+🌐
+</div>
+
+<div class="task-info">
+
+<div class="task-title">
+Website 4
+</div>
+
+<div class="task-reward">
++0.030 EM
+</div>
+
+</div>
+
+<button
+id="ad4"
+class="task-btn"
+onclick="goTask('ad4','https://example.com')">
+GO
+</button>
+
+</div>
+
+
+<div class="task">
+
+<div class="task-icon">
+🌐
+</div>
+
+<div class="task-info">
+
+<div class="task-title">
+Website 5
+</div>
+
+<div class="task-reward">
++0.030 EM
+</div>
+
+</div>
+
+<button
+id="ad5"
+class="task-btn"
+onclick="goTask('ad5','https://example.com')">
+GO
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
 <!-- PACKAGES -->
 
-<div class="section-title"
-style="margin-top:25px;">
-
+<div class="section-title">
 ⚡ باقات التعدين
-
 </div>
 
 <div class="packages">
@@ -637,7 +1142,8 @@ Starter
 $1
 </div>
 
-<button class="buy-btn"
+<button
+class="buy-btn"
 onclick="buyPackage(1,0.040,500)">
 شراء
 </button>
@@ -679,7 +1185,8 @@ Basic ⭐
 $4
 </div>
 
-<button class="buy-btn"
+<button
+class="buy-btn"
 onclick="buyPackage(4,0.090,1500)">
 شراء
 </button>
@@ -721,7 +1228,8 @@ Plus
 $8
 </div>
 
-<button class="buy-btn"
+<button
+class="buy-btn"
 onclick="buyPackage(8,0.140,3000)">
 شراء
 </button>
@@ -763,7 +1271,8 @@ Pro
 $12
 </div>
 
-<button class="buy-btn"
+<button
+class="buy-btn"
 onclick="buyPackage(12,0.200,5000)">
 شراء
 </button>
@@ -805,7 +1314,8 @@ Premium
 $16
 </div>
 
-<button class="buy-btn"
+<button
+class="buy-btn"
 onclick="buyPackage(16,0.260,7500)">
 شراء
 </button>
@@ -847,7 +1357,8 @@ Ultimate
 $20
 </div>
 
-<button class="buy-btn"
+<button
+class="buy-btn"
 onclick="buyPackage(20,0.330,10000)">
 شراء
 </button>
@@ -865,7 +1376,8 @@ onclick="buyPackage(20,0.330,10000)">
 
 <div class="bottom-nav">
 
-<button class="nav active">
+<button class="nav active"
+onclick="window.scrollTo({top:0,behavior:'smooth'})">
 
 <span class="nav-icon">🏠</span>
 الرئيسية
@@ -873,7 +1385,7 @@ onclick="buyPackage(20,0.330,10000)">
 </button>
 
 <button class="nav"
-onclick="showToast('قسم التعدين')">
+onclick="window.scrollTo({top:300,behavior:'smooth'})">
 
 <span class="nav-icon">⛏️</span>
 التعدين
@@ -881,7 +1393,7 @@ onclick="showToast('قسم التعدين')">
 </button>
 
 <button class="nav"
-onclick="watchVideos()">
+onclick="showSection('videosSection')">
 
 <span class="nav-icon">🎬</span>
 الفيديوهات
@@ -889,7 +1401,7 @@ onclick="watchVideos()">
 </button>
 
 <button class="nav"
-onclick="inviteFriends()">
+onclick="showSection('friendsSection')">
 
 <span class="nav-icon">👥</span>
 الأصدقاء
@@ -897,10 +1409,10 @@ onclick="inviteFriends()">
 </button>
 
 <button class="nav"
-onclick="showToast('الملف الشخصي')">
+onclick="document.querySelector('.packages').scrollIntoView({behavior:'smooth'})">
 
-<span class="nav-icon">👤</span>
-حسابي
+<span class="nav-icon">💳</span>
+الباقات
 
 </button>
 
@@ -912,24 +1424,28 @@ onclick="showToast('الملف الشخصي')">
 
 <script>
 
-const tg = window.Telegram.WebApp;
+const tg =
+window.Telegram.WebApp;
 
 tg.ready();
 tg.expand();
 
 
 let balance = 0;
-
 let friends = 0;
-
 let level = 1;
-
 let energy = 100;
-
+let maxEnergy = 100;
 let miningRate = 0.001;
+let mining = false;
+
+let longPressTimer = null;
+let longPressTriggered = false;
 
 
-/* USER */
+/* =========================
+   Telegram User
+========================= */
 
 function loadTelegramUser(){
 
@@ -950,12 +1466,100 @@ document.getElementById(
 "userName"
 ).textContent = name;
 
+const username =
+user.username ||
+user.id;
+
+const link =
+"https://t.me/Eyesmirorbot?start=ref_" +
+username;
+
+document.getElementById(
+"referralLink"
+).value = link;
+
+}
+
+}
+
+
+/* =========================
+   API
+========================= */
+
+async function loadUser(){
+
+try{
+
+const response =
+await fetch("/api/user",{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:JSON.stringify({
+
+initData:
+tg.initData
+
+})
+
+});
+
+const data =
+await response.json();
+
+if(!data.success){
+
+showToast("تعذر تحميل الحساب");
+return;
+
+}
+
+const user =
+data.user;
+
+balance =
+Number(user.balance || 0);
+
+friends =
+Number(user.friends || 0);
+
+level =
+Number(user.level || 1);
+
+energy =
+Number(user.energy || 0);
+
+maxEnergy =
+Math.max(100,energy);
+
+miningRate =
+Number(user.mining_rate || 0.001);
+
+mining =
+!!user.mining_start;
+
+updateUI();
+
+}catch(error){
+
+console.log(error);
+
+showToast("خطأ في الاتصال بالخادم");
+
 }
 
 }
 
 
-/* UI */
+/* =========================
+   UI
+========================= */
 
 function updateUI(){
 
@@ -981,54 +1585,504 @@ document.getElementById(
 "energy"
 ).textContent =
 "⚡ الطاقة: " +
-energy +
-" / 100";
+Math.floor(energy);
 
 document.getElementById(
 "energyStat"
 ).textContent =
-energy;
+Math.floor(energy);
 
 document.getElementById(
 "rate"
 ).textContent =
 "+" +
 miningRate.toFixed(3) +
-" EM لكل ضغطة";
+" EM / دقيقة";
+
+let percent =
+maxEnergy > 0
+?
+(energy / maxEnergy) * 100
+:
+0;
+
+document.getElementById(
+"energyFill"
+).style.width =
+Math.max(0,percent) + "%";
+
+
+if(mining){
+
+document.getElementById(
+"autoText"
+).textContent =
+"🟢 التعدين التلقائي يعمل";
+
+document.getElementById(
+"tapText"
+).textContent =
+"اضغط مطولًا للإيقاف";
+
+}else{
+
+document.getElementById(
+"autoText"
+).textContent =
+"🔴 التعدين متوقف";
+
+document.getElementById(
+"tapText"
+).textContent =
+"اضغط مطولًا للتشغيل";
+
+}
 
 }
 
 
-/* MINING */
+/* =========================
+   LONG PRESS
+========================= */
 
-function minePoint(){
+const circle =
+document.getElementById(
+"miningCircle"
+);
 
-if(energy <= 0){
+
+circle.addEventListener(
+"touchstart",
+function(e){
+
+e.preventDefault();
+
+longPressTriggered = false;
+
+longPressTimer =
+setTimeout(
+function(){
+
+longPressTriggered = true;
+
+toggleMining();
+
+},
+700
+);
+
+},
+{passive:false}
+);
+
+
+circle.addEventListener(
+"touchend",
+function(){
+
+clearTimeout(
+longPressTimer
+);
+
+}
+);
+
+
+circle.addEventListener(
+"touchcancel",
+function(){
+
+clearTimeout(
+longPressTimer
+);
+
+}
+);
+
+
+/* الكمبيوتر */
+
+circle.addEventListener(
+"mousedown",
+function(){
+
+longPressTriggered = false;
+
+longPressTimer =
+setTimeout(
+function(){
+
+longPressTriggered = true;
+
+toggleMining();
+
+},
+700
+);
+
+}
+);
+
+
+circle.addEventListener(
+"mouseup",
+function(){
+
+clearTimeout(
+longPressTimer
+);
+
+}
+);
+
+
+/* =========================
+   AUTO MINING
+========================= */
+
+async function toggleMining(){
+
+if(mining){
+
+await stopMining();
+
+}else{
+
+await startMining();
+
+}
+
+}
+
+
+async function startMining(){
+
+try{
+
+const response =
+await fetch(
+"/api/mining/start",
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:JSON.stringify({
+initData:tg.initData
+})
+
+});
+
+const data =
+await response.json();
+
+if(!data.success){
 
 showToast(
-"⚡ انتهت الطاقة"
+data.message ||
+"تعذر تشغيل التعدين"
 );
 
 return;
 
 }
 
-balance += miningRate;
+mining = true;
 
-energy--;
+showToast(
+"⛏️ تم تشغيل التعدين"
+);
 
 updateUI();
 
+}catch(error){
+
 showToast(
-"+" +
-miningRate.toFixed(3) +
-" EM 👁️"
+"خطأ في الاتصال"
+);
+
+}
+
+}
+
+
+async function stopMining(){
+
+try{
+
+const response =
+await fetch(
+"/api/mining/stop",
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:JSON.stringify({
+initData:tg.initData
+})
+
+});
+
+const data =
+await response.json();
+
+if(data.success){
+
+balance =
+Number(data.user.balance || 0);
+
+energy =
+Number(data.user.energy || 0);
+
+mining = false;
+
+showToast(
+"⛏️ تم إيقاف التعدين"
+);
+
+updateUI();
+
+}
+
+}catch(error){
+
+showToast(
+"خطأ في الاتصال"
+);
+
+}
+
+}
+
+
+/* =========================
+   تحديث الرصيد أثناء التعدين
+========================= */
+
+async function updateMiningStatus(){
+
+if(!tg.initData){
+return;
+}
+
+try{
+
+const response =
+await fetch(
+"/api/mining/status",
+{
+
+headers:{
+"x-telegram-init-data":
+tg.initData
+}
+
+});
+
+const data =
+await response.json();
+
+if(!data.success){
+return;
+}
+
+balance =
+Number(data.balance || 0);
+
+energy =
+Number(data.energy || 0);
+
+mining =
+!!data.mining;
+
+miningRate =
+Number(data.mining_rate || miningRate);
+
+updateUI();
+
+}catch(error){
+
+console.log(error);
+
+}
+
+}
+
+
+/*
+  تحديث كل 5 ثوان
+*/
+
+setInterval(
+updateMiningStatus,
+5000
+);
+
+
+/* =========================
+   FRIENDS
+========================= */
+
+function copyReferral(){
+
+const input =
+document.getElementById(
+"referralLink"
+);
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(
+input.value
+);
+
+showToast(
+"👥 تم نسخ رابط الدعوة"
+);
+
+}else{
+
+input.select();
+
+document.execCommand("copy");
+
+showToast(
+"👥 تم نسخ الرابط"
+);
+
+}
+
+}
+
+
+/* =========================
+   TASKS GO / CLAIM
+========================= */
+
+function goTask(
+id,
+url
+){
+
+const button =
+document.getElementById(id);
+
+if(!button){
+return;
+}
+
+
+/*
+  نفتح المهمة أولًا
+*/
+
+window.open(
+url,
+"_blank"
+);
+
+
+/*
+  بعد العودة تصبح CLAIM
+*/
+
+button.textContent =
+"CLAIM";
+
+button.classList.add(
+"claim"
+);
+
+button.onclick =
+function(){
+
+claimTask(id);
+
+};
+
+showToast(
+"🎯 عند العودة اضغط CLAIM"
 );
 
 }
 
 
-/* PACKAGE */
+function claimTask(id){
+
+const button =
+document.getElementById(id);
+
+if(
+!button ||
+!button.classList.contains("claim")
+){
+
+return;
+
+}
+
+
+/*
+  الواجهة جاهزة.
+  لاحقًا سنربط CLAIM
+  بالخادم لمنع التلاعب.
+*/
+
+let reward = 0;
+
+if(id.startsWith("video")){
+reward = 0.050;
+}else{
+reward = 0.030;
+}
+
+balance += reward;
+
+button.textContent =
+"تم ✓";
+
+button.disabled = true;
+
+button.classList.remove(
+"claim"
+);
+
+updateUI();
+
+showToast(
+"+" +
+reward.toFixed(3) +
+" EM 🎉"
+);
+
+}
+
+
+/* =========================
+   DAILY
+========================= */
+
+function dailyTask(){
+
+showToast(
+"🎁 المهمة اليومية ستضاف قريبًا"
+);
+
+}
+
+
+/* =========================
+   PACKAGES
+========================= */
 
 function buyPackage(
 price,
@@ -1037,91 +2091,36 @@ packageEnergy
 ){
 
 showToast(
-"💳 باقة $" +
-price +
-" — الدفع سيتم تفعيله لاحقًا"
+"💳 سيتم فتح الدفع الآمن قريبًا"
 );
 
 }
 
 
-/* INVITE */
+/* =========================
+   SECTIONS
+========================= */
 
-function inviteFriends(){
+function showSection(id){
 
-if(
-tg.initDataUnsafe &&
-tg.initDataUnsafe.user
-){
+const element =
+document.getElementById(id);
 
-const user =
-tg.initDataUnsafe.user;
+if(element){
 
-const username =
-user.username ||
-user.id;
-
-const link =
-"https://t.me/Eyesmirorbot?start=ref_" +
-username;
-
-if(navigator.clipboard){
-
-navigator.clipboard.writeText(
-link
-);
-
-showToast(
-"تم نسخ رابط الدعوة 👥"
-);
-
-}else{
-
-showToast(
-link
-);
-
-}
+element.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
 
 }
 
 }
 
 
-/* VIDEOS */
-
-function watchVideos(){
-
-showToast(
-"🎬 قسم الفيديوهات قريبًا"
-);
-
-}
-
-
-/* CHANNELS */
-
-function openChannels(){
-
-showToast(
-"📢 قسم القنوات والإعلانات قريبًا"
-);
-
-}
-
-
-/* DAILY */
-
-function dailyTask(){
-
-showToast(
-"🎁 المهمة اليومية قريبًا"
-);
-
-}
-
-
-/* TOAST */
+/* =========================
+   TOAST
+========================= */
 
 function showToast(message){
 
@@ -1143,19 +2142,22 @@ toast.style.display =
 "none";
 
 },
-1800
+2000
 );
 
 }
 
 
-/* START */
+/* =========================
+   START
+========================= */
 
 loadTelegramUser();
 
-updateUI();
+loadUser();
 
 </script>
 
 </body>
 </html>
+```
