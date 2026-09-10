@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>EyesMiror</title>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -12,166 +12,69 @@
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial,sans-serif;
+    -webkit-tap-highlight-color:transparent;
 }
 
 body{
-    background:#05090d;
-    color:white;
+    background:#050505;
+    color:#fff;
+    font-family:Arial,sans-serif;
     min-height:100vh;
-    padding-bottom:90px;
 }
 
 .app{
-    max-width:500px;
+    max-width:520px;
+    min-height:100vh;
     margin:auto;
-    padding:18px;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 35%,rgba(255,190,0,.15),transparent 32%),
+        linear-gradient(180deg,#070707,#030303);
 }
 
-/* Header */
 .header{
+    padding:25px 20px 10px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    margin-bottom:20px;
+    align-items:center;
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
+    font-size:25px;
+    font-weight:900;
+    color:#ffd000;
 }
 
-.eye{
-    font-size:42px;
-    color:#ffc928;
-}
-
-.logo h1{
-    font-size:28px;
-}
-
-.logo span{
-    color:#ffc928;
-}
-
-.profile{
-    width:45px;
-    height:45px;
-    border:1px solid #c89520;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-}
-
-/* Balance */
-.balance{
-    border:1px solid #8f6415;
-    border-radius:22px;
-    padding:20px;
-    background:linear-gradient(120deg,#10171d,#171107);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
-}
-
-.balance small{
+.welcome{
     color:#aaa;
-}
-
-.balance h2{
-    color:#ffd04a;
-    font-size:30px;
+    font-size:13px;
     margin-top:5px;
 }
 
-/* Mining */
-.mining{
-    border:1px solid #332710;
-    border-radius:25px;
-    padding:25px 18px;
-    background:radial-gradient(circle at center,#241a07,#0b1014 65%);
-    text-align:center;
-    margin-bottom:18px;
-}
-
-.mining h2{
-    color:#ffc52e;
-    font-size:30px;
-    margin-bottom:5px;
-}
-
-.mining p{
-    color:#aaa;
-    margin-bottom:20px;
-}
-
-.mine-circle{
-    width:190px;
-    height:190px;
-    margin:15px auto 25px;
-    border-radius:50%;
-    border:8px solid #d99d16;
-    box-shadow:0 0 35px #a87510;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#111;
-}
-
-.mine-icon{
-    font-size:75px;
-}
-
-button{
-    border:0;
-    cursor:pointer;
-}
-
-.mine-btn{
-    width:90%;
-    padding:16px;
-    border-radius:30px;
-    background:linear-gradient(90deg,#ffd84d,#d99814);
-    color:#15110a;
-    font-size:19px;
-    font-weight:bold;
-}
-
-/* Cards */
-.cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-}
-
-.card{
-    background:#0d1419;
-    border:1px solid #503a12;
-    border-radius:18px;
-    padding:18px 8px;
+.balanceBox{
+    background:#151515;
+    border:1px solid #393000;
+    padding:10px 15px;
+    border-radius:20px;
     text-align:center;
 }
 
-.card .icon{
-    font-size:32px;
-    margin-bottom:10px;
-}
-
-.card h3{
-    font-size:15px;
-}
-
-.card p{
-    color:#888;
+.balanceBox small{
+    color:#999;
+    display:block;
     font-size:11px;
-    margin-top:7px;
 }
 
-/* Pages */
+.balanceBox b{
+    color:#ffd000;
+    font-size:17px;
+}
+
+.content{
+    padding:20px 18px 120px;
+}
+
 .page{
     display:none;
 }
@@ -180,60 +83,282 @@ button{
     display:block;
 }
 
-.page-title{
-    font-size:28px;
-    color:#ffd044;
-    margin:15px 0 20px;
+.title{
+    font-size:22px;
+    font-weight:900;
+    margin:10px 0 20px;
 }
 
-.info{
-    background:#0d1419;
-    border:1px solid #403112;
-    border-radius:18px;
+.subtitle{
+    color:#999;
+    font-size:14px;
+    margin-top:-12px;
+    margin-bottom:20px;
+}
+
+/* التعدين */
+
+.level{
+    text-align:center;
+    margin:10px 0 15px;
+}
+
+.level span{
+    background:#161616;
+    border:1px solid #3d3500;
+    color:#ffd000;
+    padding:8px 20px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.miningCard{
+    background:linear-gradient(145deg,#111,#080808);
+    border:1px solid #3b3200;
+    border-radius:25px;
     padding:20px;
-    margin-bottom:12px;
+    text-align:center;
 }
 
-.info h3{
-    margin-bottom:8px;
+.rate{
+    color:#00ffa6;
+    font-size:16px;
+    font-weight:bold;
 }
 
-.info p{
-    color:#aaa;
-    line-height:1.7;
+.rate strong{
+    font-size:27px;
 }
 
-/* Bottom navigation */
-.nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:75px;
-    background:#090d11;
-    border-top:1px solid #30250e;
+.mineCircle{
+    width:230px;
+    height:230px;
+    margin:25px auto;
+    border-radius:50%;
     display:flex;
-    justify-content:space-around;
     align-items:center;
-    z-index:10;
-}
-
-.nav button{
-    background:none;
-    color:#888;
-    font-size:11px;
-    display:flex;
+    justify-content:center;
     flex-direction:column;
-    align-items:center;
-    gap:5px;
+
+    background:
+      radial-gradient(circle at 35% 30%,#fff5a8,#e8ad00 45%,#684500 80%);
+
+    border:10px solid #d89e00;
+
+    box-shadow:
+      0 0 0 4px #4d3900,
+      0 0 35px rgba(255,200,0,.3),
+      inset 0 0 25px #fff1a0;
 }
 
-.nav .nav-icon{
+.mineIcon{
+    font-size:60px;
+}
+
+.mineCircle b{
+    color:#342500;
     font-size:24px;
 }
 
-.nav button.active{
-    color:#ffd039;
+.timer{
+    color:#aaa;
+    margin-bottom:18px;
+}
+
+.mainButton{
+    width:100%;
+    border:0;
+    border-radius:22px;
+    padding:17px;
+    background:linear-gradient(90deg,#ffd000,#ff9900);
+    color:#111;
+    font-size:19px;
+    font-weight:900;
+}
+
+.mainButton:active{
+    transform:scale(.97);
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:15px;
+}
+
+.stat{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:18px;
+    padding:15px;
+}
+
+.stat small{
+    color:#888;
+}
+
+.stat b{
+    display:block;
+    color:#ffd000;
+    font-size:18px;
+    margin-top:6px;
+}
+
+/* البطاقات */
+
+.card{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:14px;
+}
+
+.cardHeader{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.cardIcon{
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#191600;
+    border-radius:14px;
+    font-size:24px;
+}
+
+.card h3{
+    font-size:16px;
+}
+
+.card p{
+    color:#999;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.reward{
+    color:#00ffa6 !important;
+    font-weight:bold;
+}
+
+.smallButton{
+    margin-top:15px;
+    width:100%;
+    padding:13px;
+    border:1px solid #665300;
+    border-radius:15px;
+    background:#181500;
+    color:#ffd000;
+    font-weight:bold;
+}
+
+/* الملف الشخصي */
+
+.profile{
+    text-align:center;
+}
+
+.avatar{
+    width:90px;
+    height:90px;
+    margin:15px auto;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#171300;
+    border:2px solid #ffd000;
+    font-size:45px;
+}
+
+.profileName{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.profileGrid{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+/* الإحالات */
+
+.refLink{
+    background:#080808;
+    border:1px dashed #665300;
+    padding:15px;
+    border-radius:15px;
+    color:#aaa;
+    word-break:break-all;
+    margin:15px 0;
+}
+
+/* Navigation */
+
+.nav{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:520px;
+    height:82px;
+    background:#070707;
+    border-top:1px solid #292929;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:50;
+}
+
+.navItem{
+    width:20%;
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    cursor:pointer;
+}
+
+.navIcon{
+    display:block;
+    font-size:25px;
+    margin-bottom:4px;
+}
+
+.navItem.active{
+    color:#ffd000;
+}
+
+.navItem.active .navIcon{
+    filter:drop-shadow(0 0 7px #ffd000);
+}
+
+/* تنبيه */
+
+.toast{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%) translateY(-100px);
+    background:#161616;
+    border:1px solid #ffd000;
+    color:#fff;
+    padding:13px 20px;
+    border-radius:15px;
+    z-index:100;
+    transition:.3s;
+}
+
+.toast.show{
+    transform:translateX(-50%) translateY(0);
 }
 </style>
 </head>
@@ -242,261 +367,609 @@ button{
 
 <div class="app">
 
-    <!-- الرئيسية -->
-    <div id="home" class="page active">
+<header class="header">
+    <div>
+        <div class="logo">👁️ EyesMiror</div>
+        <div class="welcome">مرحبًا بك في عالم EyesMiror</div>
+    </div>
 
-        <div class="header">
-            <div class="logo">
-                <div class="eye">◉</div>
-                <h1>Eyes<span>Miror</span></h1>
-            </div>
+    <div class="balanceBox">
+        <small>رصيدك</small>
+        <b><span id="headerBalance">0</span> نقطة</b>
+    </div>
+</header>
 
-            <div class="profile">👤</div>
-        </div>
+<main class="content">
 
-        <div class="balance">
+<!-- الرئيسية -->
+<section id="home" class="page active">
+
+    <div class="title">🏠 الرئيسية</div>
+
+    <div class="card">
+        <div class="cardHeader">
+            <div class="cardIcon">💰</div>
             <div>
-                <small>مرحبًا بك</small>
-                <h3>مستخدم جديد</h3>
+                <h3>رصيد النقاط</h3>
+                <p>رصيدك الحالي في EyesMiror</p>
             </div>
+        </div>
+
+        <div style="font-size:34px;font-weight:900;color:#ffd000;margin-top:20px">
+            <span id="homeBalance">0</span>
+        </div>
+        <p>EM Points</p>
+    </div>
+
+    <div class="card">
+        <h3>⛏️ التعدين</h3>
+        <p>فعّل جمع النقاط واحصل على نقاط تجريبية مع مرور الوقت.</p>
+
+        <button class="mainButton"
+                style="margin-top:18px"
+                onclick="showPage('mine')">
+            الدخول إلى التعدين
+        </button>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <small>المستوى</small>
+            <b id="homeLevel">1</b>
+        </div>
+
+        <div class="stat">
+            <small>الأصدقاء</small>
+            <b id="homeFriends">0</b>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- التعدين -->
+<section id="mine" class="page">
+
+    <div class="title">⛏️ التعدين</div>
+    <div class="subtitle">اجمع نقاط EyesMiror التجريبية</div>
+
+    <div class="level">
+        <span>المستوى <b id="level">1</b></span>
+    </div>
+
+    <div class="miningCard">
+
+        <div class="rate">
+            معدل الجمع<br>
+            <strong>+<span id="rate">0.10</span></strong> نقطة / دقيقة
+        </div>
+
+        <div class="mineCircle">
+            <div class="mineIcon">👁️</div>
+            <b>EyesMiror</b>
+        </div>
+
+        <div class="timer">
+            الحالة:
+            <strong id="mineStatus">متوقف</strong>
+        </div>
+
+        <button class="mainButton" onclick="toggleMining()" id="mineButton">
+            🚀 تفعيل التعدين
+        </button>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <small>النقاط</small>
+            <b id="mineBalance">0</b>
+        </div>
+
+        <div class="stat">
+            <small>المستوى</small>
+            <b id="mineLevel">1</b>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- المهام -->
+<section id="tasks" class="page">
+
+    <div class="title">🎯 المهام</div>
+    <div class="subtitle">أكمل المهام للحصول على نقاط</div>
+
+    <div class="card">
+
+        <div class="cardHeader">
+            <div class="cardIcon">🎁</div>
 
             <div>
-                <small>رصيدك</small>
-                <h2 id="balance">0</h2>
-                <small>نقطة</small>
+                <h3>تسجيل الدخول اليومي</h3>
+                <p>مكافأة يومية</p>
             </div>
         </div>
 
-        <div class="mining">
+        <p class="reward">+10 نقاط</p>
 
-            <h2>⛏️ التعدين</h2>
-            <p>اجمع النقاط يوميًا بشكل مجاني</p>
+        <button class="smallButton"
+                id="dailyButton"
+                onclick="dailyReward()">
+            استلام المكافأة
+        </button>
 
-            <div class="mine-circle">
-                <div class="mine-icon">⛏️</div>
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardHeader">
+            <div class="cardIcon">👥</div>
+
+            <div>
+                <h3>دعوة صديق</h3>
+                <p>شارك EyesMiror مع أصدقائك</p>
             </div>
-
-            <button class="mine-btn" onclick="startMining()">
-                تفعيل التعدين
-            </button>
-
         </div>
 
-        <div class="cards">
+        <p class="reward">+50 نقطة</p>
 
-            <div class="card" onclick="showPage('videos')">
-                <div class="icon">🎬</div>
-                <h3>الفيديوهات</h3>
-                <p>شاهد واربح</p>
+        <button class="smallButton"
+                onclick="showPage('friends')">
+            دعوة صديق
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="cardHeader">
+            <div class="cardIcon">▶️</div>
+
+            <div>
+                <h3>مشاهدة المحتوى</h3>
+                <p>مهمة تجريبية</p>
             </div>
+        </div>
 
-            <div class="card" onclick="showPage('tasks')">
-                <div class="icon">🎁</div>
-                <h3>المهام</h3>
-                <p>مهام يومية</p>
-            </div>
+        <p class="reward">+5 نقاط</p>
 
-            <div class="card" onclick="showPage('referrals')">
-                <div class="icon">👥</div>
-                <h3>الأصدقاء</h3>
-                <p>دعوة الأصدقاء</p>
-            </div>
+        <button class="smallButton"
+                id="videoButton"
+                onclick="videoReward()">
+            إكمال المهمة
+        </button>
 
+    </div>
+
+</section>
+
+
+<!-- الأصدقاء -->
+<section id="friends" class="page">
+
+    <div class="title">👥 الإحالات</div>
+    <div class="subtitle">شارك رابط EyesMiror مع أصدقائك</div>
+
+    <div class="card">
+
+        <div style="text-align:center;font-size:45px">
+            👥
+        </div>
+
+        <h3 style="text-align:center;margin-top:10px">
+            أصدقاؤك
+        </h3>
+
+        <div style="text-align:center;font-size:30px;color:#ffd000;margin:10px">
+            <span id="friends">0</span>
+        </div>
+
+        <p style="text-align:center">
+            عدد الإحالات
+        </p>
+
+        <div class="refLink" id="refLink">
+            https://t.me/Eyesmirorbot?start=ref
+        </div>
+
+        <button class="mainButton" onclick="invite()">
+            📤 مشاركة الرابط
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- الملف الشخصي -->
+<section id="profile" class="page">
+
+    <div class="title">👤 الملف الشخصي</div>
+
+    <div class="card profile">
+
+        <div class="avatar">👤</div>
+
+        <div class="profileName" id="profileName">
+            مستخدم EyesMiror
+        </div>
+
+        <p style="color:#888;margin-top:5px">
+            عضو في EyesMiror
+        </p>
+
+    </div>
+
+    <div class="profileGrid">
+
+        <div class="stat">
+            <small>النقاط</small>
+            <b id="profileBalance">0</b>
+        </div>
+
+        <div class="stat">
+            <small>المستوى</small>
+            <b id="profileLevel">1</b>
+        </div>
+
+        <div class="stat">
+            <small>الإحالات</small>
+            <b id="profileFriends">0</b>
+        </div>
+
+        <div class="stat">
+            <small>الحالة</small>
+            <b style="color:#00ffa6">نشط</b>
         </div>
 
     </div>
 
+</section>
 
-    <!-- الفيديوهات -->
-    <div id="videos" class="page">
-
-        <h2 class="page-title">🎬 الفيديوهات</h2>
-
-        <div class="info">
-            <h3>شاهد الفيديو واربح</h3>
-            <p>شاهد الفيديوهات المتاحة واحصل على نقاط.</p>
-            <br>
-            <button class="mine-btn" onclick="reward(10)">
-                مشاهدة الفيديو
-            </button>
-        </div>
-
-    </div>
+</main>
 
 
-    <!-- التعدين -->
-    <div id="mining" class="page">
+<nav class="nav">
 
-        <h2 class="page-title">⛏️ التعدين</h2>
-
-        <div class="info">
-            <h3>التعدين التجريبي</h3>
-            <p>اضغط على زر التفعيل لبدء جمع النقاط.</p>
-            <br>
-            <button class="mine-btn" onclick="startMining()">
-                بدء التعدين
-            </button>
-        </div>
-
-    </div>
-
-
-    <!-- المهام -->
-    <div id="tasks" class="page">
-
-        <h2 class="page-title">🎁 المهام</h2>
-
-        <div class="info">
-            <h3>مهمة يومية</h3>
-            <p>أكمل المهام للحصول على نقاط إضافية.</p>
-            <br>
-            <button class="mine-btn" onclick="reward(25)">
-                إكمال المهمة +25
-            </button>
-        </div>
-
-    </div>
-
-
-    <!-- الإحالات -->
-    <div id="referrals" class="page">
-
-        <h2 class="page-title">👥 الإحالات</h2>
-
-        <div class="info">
-            <h3>ادعُ أصدقاءك</h3>
-            <p>شارك رابط EyesMiror مع أصدقائك واحصل على نقاط.</p>
-            <br>
-            <button class="mine-btn" onclick="shareApp()">
-                مشاركة الرابط
-            </button>
-        </div>
-
-    </div>
-
-
-    <!-- الملف الشخصي -->
-    <div id="profilePage" class="page">
-
-        <h2 class="page-title">👤 الملف الشخصي</h2>
-
-        <div class="info">
-            <h3>حساب EyesMiror</h3>
-            <p>رصيدك الحالي:</p>
-            <h2 id="profileBalance">0 نقطة</h2>
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- القائمة السفلية -->
-<div class="nav">
-
-    <button class="active" onclick="showPage('home',this)">
-        <span class="nav-icon">🏠</span>
+    <div class="navItem active" onclick="showPage('home',this)">
+        <span class="navIcon">🏠</span>
         الرئيسية
-    </button>
+    </div>
 
-    <button onclick="showPage('videos',this)">
-        <span class="nav-icon">🎬</span>
-        الفيديوهات
-    </button>
-
-    <button onclick="showPage('mining',this)">
-        <span class="nav-icon">⛏️</span>
+    <div class="navItem" onclick="showPage('mine',this)">
+        <span class="navIcon">⛏️</span>
         التعدين
-    </button>
+    </div>
 
-    <button onclick="showPage('tasks',this)">
-        <span class="nav-icon">🎁</span>
+    <div class="navItem" onclick="showPage('tasks',this)">
+        <span class="navIcon">🎯</span>
         المهام
-    </button>
+    </div>
 
-    <button onclick="showPage('referrals',this)">
-        <span class="nav-icon">👥</span>
+    <div class="navItem" onclick="showPage('friends',this)">
+        <span class="navIcon">👥</span>
         الإحالات
-    </button>
+    </div>
 
-    <button onclick="showPage('profilePage',this)">
-        <span class="nav-icon">👤</span>
-        الملف
-    </button>
+    <div class="navItem" onclick="showPage('profile',this)">
+        <span class="navIcon">👤</span>
+        حسابي
+    </div>
+
+</nav>
+
+<div class="toast" id="toast"></div>
 
 </div>
 
 
 <script>
 
-const tg = window.Telegram.WebApp;
+const tg = window.Telegram && window.Telegram.WebApp;
 
-tg.ready();
-tg.expand();
-
-let balance = Number(localStorage.getItem("balance") || 0);
-
-function updateBalance(){
-
-    document.getElementById("balance").innerText = balance;
-
-    document.getElementById("profileBalance").innerText =
-        balance + " نقطة";
-
-    localStorage.setItem("balance",balance);
+if(tg){
+    tg.ready();
+    tg.expand();
 }
 
-function reward(points){
 
-    balance += points;
+/* البيانات */
 
-    updateBalance();
+let balance = parseFloat(
+    localStorage.getItem("eyes_balance")
+) || 0;
 
-    tg.showAlert("🎉 حصلت على +" + points + " نقطة");
+let level = parseInt(
+    localStorage.getItem("eyes_level")
+) || 1;
+
+let friends = parseInt(
+    localStorage.getItem("eyes_friends")
+) || 0;
+
+let mining = localStorage.getItem("eyes_mining") === "true";
+
+
+/* معدل النقاط */
+
+const miningRate = 0.10;
+
+
+/* تحديث الواجهة */
+
+function update(){
+
+    balance = Math.max(0,balance);
+
+    document.getElementById("headerBalance").textContent =
+        balance.toFixed(2);
+
+    document.getElementById("homeBalance").textContent =
+        balance.toFixed(2);
+
+    document.getElementById("mineBalance").textContent =
+        balance.toFixed(2);
+
+    document.getElementById("profileBalance").textContent =
+        balance.toFixed(2);
+
+    document.getElementById("level").textContent =
+        level;
+
+    document.getElementById("mineLevel").textContent =
+        level;
+
+    document.getElementById("homeLevel").textContent =
+        level;
+
+    document.getElementById("profileLevel").textContent =
+        level;
+
+    document.getElementById("friends").textContent =
+        friends;
+
+    document.getElementById("homeFriends").textContent =
+        friends;
+
+    document.getElementById("profileFriends").textContent =
+        friends;
+
+    document.getElementById("rate").textContent =
+        miningRate.toFixed(2);
+
+    document.getElementById("mineStatus").textContent =
+        mining ? "يعمل 🟢" : "متوقف";
+
+    document.getElementById("mineButton").textContent =
+        mining ? "⏸️ إيقاف التعدين" : "🚀 تفعيل التعدين";
+
+    localStorage.setItem("eyes_balance",balance);
+    localStorage.setItem("eyes_level",level);
+    localStorage.setItem("eyes_friends",friends);
+    localStorage.setItem("eyes_mining",mining);
 
 }
 
-function startMining(){
 
-    balance += 1;
+/* التعدين */
 
-    updateBalance();
+function toggleMining(){
 
-    tg.showAlert("⛏️ تم تفعيل التعدين التجريبي");
+    mining = !mining;
 
+    showToast(
+        mining
+        ? "🚀 تم تفعيل جمع النقاط"
+        : "⏸️ تم إيقاف جمع النقاط"
+    );
+
+    update();
 }
 
-function showPage(page,button){
 
-    document.querySelectorAll(".page").forEach(p=>{
-        p.classList.remove("active");
-    });
+/* إضافة النقاط */
 
-    document.getElementById(page).classList.add("active");
+setInterval(function(){
 
-    document.querySelectorAll(".nav button").forEach(b=>{
-        b.classList.remove("active");
-    });
+    if(mining){
 
-    if(button){
-        button.classList.add("active");
+        balance += miningRate / 60;
+
+        if(balance >= level * 100){
+
+            level++;
+
+            showToast(
+                "🎉 مبروك! وصلت إلى المستوى " + level
+            );
+        }
+
+        update();
     }
 
+},1000);
+
+
+/* المهام */
+
+function dailyReward(){
+
+    const today =
+        new Date().toISOString().slice(0,10);
+
+    if(localStorage.getItem("daily_reward") === today){
+
+        showToast("لقد استلمت مكافأة اليوم بالفعل");
+
+        return;
+    }
+
+    balance += 10;
+
+    localStorage.setItem(
+        "daily_reward",
+        today
+    );
+
+    document.getElementById("dailyButton").textContent =
+        "تم الاستلام ✓";
+
+    showToast("🎁 حصلت على +10 نقاط");
+
+    update();
 }
 
-function shareApp(){
 
-    if(tg.openTelegramLink){
+function videoReward(){
+
+    if(localStorage.getItem("video_done") === "true"){
+
+        showToast("لقد أكملت هذه المهمة");
+
+        return;
+    }
+
+    balance += 5;
+
+    localStorage.setItem(
+        "video_done",
+        "true"
+    );
+
+    document.getElementById("videoButton").textContent =
+        "تمت المهمة ✓";
+
+    showToast("🎉 حصلت على +5 نقاط");
+
+    update();
+}
+
+
+/* التنقل */
+
+function showPage(id,element){
+
+    document.querySelectorAll(".page")
+    .forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+    document.getElementById(id)
+        .classList.add("active");
+
+
+    document.querySelectorAll(".navItem")
+    .forEach(function(item){
+
+        item.classList.remove("active");
+
+    });
+
+
+    if(element){
+
+        element.classList.add("active");
+
+    }else{
+
+        document.querySelector(
+            '.navItem[onclick*="' + id + '"]'
+        ).classList.add("active");
+
+    }
+
+    window.scrollTo(0,0);
+}
+
+
+/* الدعوة */
+
+function invite(){
+
+    const link =
+        "https://t.me/Eyesmirorbot?start=ref";
+
+    const text =
+        "👁️ انضم إلى EyesMiror!\n\n" +
+        "ابدأ بجمع النقاط وأكمل المهام.\n\n" +
+        link;
+
+    if(tg && tg.openTelegramLink){
 
         tg.openTelegramLink(
-            "https://t.me/share/url?url=https://t.me/Eyesmirorbot"
+            "https://t.me/share/url?url=" +
+            encodeURIComponent(link) +
+            "&text=" +
+            encodeURIComponent(
+                "انضم إلى EyesMiror 👁️"
+            )
         );
 
+    }else if(navigator.share){
+
+        navigator.share({
+            title:"EyesMiror",
+            text:text,
+            url:link
+        });
+
+    }else{
+
+        navigator.clipboard.writeText(text);
+
+        showToast("تم نسخ رابط الدعوة");
+
     }
+}
+
+
+/* التنبيهات */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(function(){
+
+        toast.classList.remove("show");
+
+    },2500);
+}
+
+
+/* اسم مستخدم Telegram */
+
+if(tg && tg.initDataUnsafe && tg.initDataUnsafe.user){
+
+    const user =
+        tg.initDataUnsafe.user;
+
+    let name =
+        user.first_name || "مستخدم";
+
+    document.getElementById(
+        "profileName"
+    ).textContent = name;
 
 }
 
-updateBalance();
+
+/* تشغيل */
+
+update();
 
 </script>
 
