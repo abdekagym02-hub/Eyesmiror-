@@ -65,7 +65,8 @@ async function main() {
                             {
                                 text: "🚀 فتح EyesMiror",
                                 web_app: {
-                                    url: "https://eyesmiror.onrender.com/"
+                                    url: "https://eyesmiror-bot-zpoz.onrender.com/"
+                                    
                                 }
                             }
                         ]
